@@ -18,11 +18,9 @@
 				$("input[name=check]").prop("checked", false);
 			}
 		});
-
 		$("input[name=check]").click(function() { //개별체크3개가 체크되면 전체동의도 체크
 			var total = $("input[name=check]").length;
 			var checked = $("input[name=check]:checked").length;
-
 			if(total != checked) $("#checkall").prop("checked", false);
 			else $("#checkall").prop("checked", true); 
 		});
@@ -46,13 +44,11 @@
 	display: inline-block;
 	font-size: 9px;
 }
-
 .section2 {
 	justify-content: center;
 	display: flex;
 	position: relative;
 }
-
 .section3 {
 	border: solid black;
 	width: 80%;
