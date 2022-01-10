@@ -1,7 +1,11 @@
 package member.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
+import member.dto.memberDTO;
 import sqlmap.MybatisManager;
 
 public class memberDAO {
@@ -48,6 +52,34 @@ public class memberDAO {
 		}
 		
 		return name_check;
+	}
+
+	public void insert(memberDTO dto) { //회원가입
+		System.out.println(dto.toString());
+		SqlSession session=null;
+		
+		session=MybatisManager.getInstance().openSession(); //mybatis객체 생성
+		session.insert("member.insert",dto);
+		
+		session.commit();
+		session.close();
+		
+		
+	}
+
+	public String login(String userid, String passwd) { //로그인
+		SqlSession session=null;
+		Map<String,String>map = new HashMap<String,String>();
+		map.put("userid",userid);
+		map.put("passwd",passwd);
+		System.out.println(map);
+		
+		session=MybatisManager.getInstance().openSession(); 
+		String name=session.selectOne("member.login",map);
+		
+		session.close();
+		
+		return name;
 	}
 
 }

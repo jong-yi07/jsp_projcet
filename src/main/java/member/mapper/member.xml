@@ -14,6 +14,16 @@
   from member 
   where name=#{name}
  </select>
+ 
+ <insert id="insert" parameterType="member.dto.memberDTO">
+insert into member(userid,passwd,name,tel,email,birth_date) 
+values(#{userid},#{passwd},#{name},#{tel},#{email},#{birth_date})
+ </insert>
+ 
+ <!--로그인-->
+ <select id="login" resultType="String" parameterType="java.util.HashMap">
+ select name from member 
+ where userid=#{userid} and passwd=#{passwd}
+</select>
+ 
 </mapper>
-
-

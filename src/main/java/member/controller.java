@@ -3,13 +3,16 @@ package member;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.dao.memberDAO;
+import member.dto.memberDTO;
 
 
 @WebServlet("/member_servlet/*")
@@ -25,10 +28,6 @@ public class controller extends HttpServlet {
 		if(uri.indexOf("id_check.do")!=-1) { //아이디 중복체크
 			String userid=request.getParameter("userid");
 			System.out.println(userid);
-//			String passwd=request.getParameter("passwd");
-//			String name=request.getParameter("name");
-//			String email=request.getParameter("email");
-//			String tel=request.getParameter(name);
 			
 			PrintWriter out=response.getWriter();
 			int idcheck=dao.idcheck(userid);
@@ -38,7 +37,7 @@ public class controller extends HttpServlet {
 				System.out.println("사용가능한 아이디입니다.");
 			}	
 			out.write(idcheck+"");
-		}else if(uri.indexOf("name_check.do")!=-1) {
+		}else if(uri.indexOf("name_check.do")!=-1) { //닉네임 중복체크
 			String name=request.getParameter("name");
 			System.out.println(name);
 			
@@ -50,8 +49,42 @@ public class controller extends HttpServlet {
 				System.out.println("사용가능한 아이디입니다.");
 			}	
 			out.write(namecheck+"");
+		}else if(uri.indexOf("signup.do")!=-1) { //회원가입
+			String userid=request.getParameter("userid");
+			String passwd=request.getParameter("passwd");
+			String name=request.getParameter("name");
+ 		    String email=request.getParameter("email");
+			String tel=request.getParameter("tel");
+			String birth=request.getParameter("birth");
+			
+			memberDTO dto=new memberDTO();
+			dto.setUserid(userid);
+			dto.setPasswd(passwd);
+			dto.setName(name);
+			dto.setEmail(email);
+			dto.setTel(tel);
+			dto.setBirth_date(birth);
+			dao.insert(dto);
+		}else if(uri.indexOf("login.do")!=-1) { //로그인
+			String userid=request.getParameter("userid");
+			String passwd=request.getParameter("passwd");
+			System.out.println(userid+","+passwd);
+			
+			String name=dao.login(userid,passwd);
+			PrintWriter out=response.getWriter();
+			if(name==null) { //로그인 실패
+				String result="아이디 또는 비밀번호가 일치하지 않습니다.";
+				request.setAttribute("result", result);
+				System.out.println("로그인 실패:"+result);
+				out.write(0+"");
+			}else {// 로그인 성공
+				System.out.println("로그인 성공:"+name);
+				HttpSession session=request.getSession();
+				session.setAttribute("userid", userid);
+				session.setAttribute("name", name);
+				out.write(1+"");
+			}
 		}
-		
 	}
 
 

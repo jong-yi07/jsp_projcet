@@ -10,7 +10,6 @@
 <script type="text/javascript">
 var userid_check=false;
 var name_check=false;
-
 $(function(){
 	$("#header").load("header.jsp");
 	
@@ -155,14 +154,25 @@ $(function(){
 			return;
 		}
 		
+		var oldVal2;
+		
+		$("#userid").on("propertychange change keyup paste input", function() { //Input 값 변경 실시간 감지
+		    var currentVal = $(this).val();
+		    if(currentVal == oldVal2) {
+		        return;
+		    }
+		 
+		    oldVal2 = currentVal;
+		    name_check=false;
+		});
+		
 		if(name_check==false)
 			alert("닉네임 중복확인해주세요");
 	
 		alert("가입되었습니다.");
-		insert();
+		insert(); //회원가입
 	});
 });
-
 function insert(){
 	var param="userid="+$("#userid").val()
 	+"&passwd="+$("#passwd1").val()
@@ -174,10 +184,10 @@ function insert(){
 	
 	$.ajax({
 		type: "post",
-		url: "/jquerymobile_work/member_servlet/signup.do",
+		url: "/jsp_project/member_servlet/signup.do",
 		data: param,
 		success: function(){
-			location.href = "login.jsp";
+			console.log("회원가입 완료");
 		} 
 	});
 }
@@ -188,9 +198,12 @@ input{
 	display:inline-block;
 }
 label{
+	display:inline-block;
 	width:30%;
 }
-/* 자바 데이터 https://kldp.org/node/64577  */
+#login_check,#name_check{
+	color:pink;
+}
 </style>
 </head>
 <body>
@@ -200,13 +213,13 @@ label{
 		<div class="mb-3">
 			<form class="form-inline">
 				<div class="form-group">
-					<label for="email" style=”display:inline-block“ class="float-left">Id : </label> 
-					<button type="button" id="login_check" class="float-left" style=”display:inline-block;“>login check</button>
-					<input type="text" class="form-control float-right" id="userid" placeholder="Enter Id"name="userid">
-					<font id="checkid" size="2"></font>
+					<button type="button" id="login_check" class="float-left btn-sm" style=”display:inline-block;“>login check</button>
+					<label for="userid" style="width:15%; display:inline-block;">Id : </label> 
+					<input type="text" class="form-control float-right" id="userid" placeholder="Enter Id" name="userid" style="width:60%; display:inline-block;">
+					<br> <font id="checkid" size="2"></font>
 				</div>
 				<div class="form-group">
-					<label for="passwd1" class="float-left">Password : </label> 
+					<label for="passwd1" class="float-left" style="width:30%; display:inline-block;">Password : </label> 
 					<input type="password" class="form-control float-right" id="passwd1" placeholder="Enter password" name="passwd1" style="width:60%; display:inline-block;">
 				</div>
 				<div class="form-group">
@@ -214,21 +227,22 @@ label{
 					<input type="password" class="form-control float-right" id="passwd2" placeholder="Enter password" name="passwd2" style="width:60%; display:inline-block;">
 				</div>
 				<div class="form-group">
-					<label for="name" class="float-left">UseName : </label> <button type="button"  id="name_check" class="float-right" style=”display:inline-block“>name check</button>
-					<input type="text" class="form-control float-right" id="name" placeholder="Enter Name" name="name">
-					<font id="checkname" size="2"></font>
+					<label for="name" class="float-left" style="width:30%; display:inline-block;">UseName : </label> 
+					<button type="button"  id="name_check" class="float-right btn-sm" style=”display:inline-block“>name check</button>
+					<input type="text" class="form-control float-right" id="name" placeholder="Enter Name" name="name" style="width:60%; display:inline-block;">
+					<br> <font id="checkname" size="2"></font>
 				</div>
 				<div class="form-group">
-					<label for="email" class="float-left">Email : </label> 
-					<input type="email" class="form-control float-right" id="email" placeholder="Enter Email"name="email">
+					<label for="email" class="float-left" style="width:30%; display:inline-block;">Email : </label> 
+					<input type="email" class="form-control float-right" id="email" placeholder="Enter Email"name="email" style="width:60%; display:inline-block;">
 				</div>
 				<div class="form-group" >
-					<label for="tel" class="float-left">tel : </label> 
-					<input type="text" class="form-control float-right" id="tel" placeholder="Enter Tel" name="tel">
+					<label for="tel" class="float-left" style="width:30%; display:inline-block;">tel : </label> 
+					<input type="text" class="form-control float-right" id="tel" placeholder="Enter Tel" name="tel" style="width:60%; display:inline-block;">
 				</div>
 				<div class="form-group">
-					<label for="birth" class="float-left">Birth : </label> 
-					<input type="date" class="form-control float-right" id="birth" placeholder="Enter Birth" name="birth">
+					<label for="birth" class="float-left" style="width:30%; display:inline-block;">Birth : </label> 
+					<input type="date" class="form-control float-right" id="birth" placeholder="Enter Birth" name="birth" style="width:60%; display:inline-block;">
 				</div>			
 				<button type="button" id="signup_btn">회원가입</button>
 			</form>

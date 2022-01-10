@@ -8,14 +8,14 @@ public class memberDTO {
 	private String name;
 	private String tel;
 	private String email;
-	private Date join_date;
-	private Date birth_date;
+	private String join_date;
+	private String birth_date;
 	public memberDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public memberDTO(String userid, String passwd, String name, String tel, String email, Date join_date,
-			Date birth_date) {
+	public memberDTO(String userid, String passwd, String name, String tel, String email, String join_date,
+			String birth_date) {
 		super();
 		this.userid = userid;
 		this.passwd = passwd;
@@ -60,16 +60,16 @@ public class memberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getJoin_date() {
+	public String getJoin_date() {
 		return join_date;
 	}
-	public void setJoin_date(Date join_date) {
+	public void setJoin_date(String join_date) {
 		this.join_date = join_date;
 	}
-	public Date getBirth_date() {
+	public String getBirth_date() {
 		return birth_date;
 	}
-	public void setBirth_date(Date birth_date) {
+	public void setBirth_date(String birth_date) {
 		this.birth_date = birth_date;
 	}
 	
