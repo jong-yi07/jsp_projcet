@@ -25,5 +25,17 @@ values(#{userid},#{passwd},#{name},#{tel},#{email},#{birth_date})
  select name from member 
  where userid=#{userid} and passwd=#{passwd}
 </select>
+
+<!-- 아이디 찾기 -->
+ <select id="id_find" resultType="String" parameterType="java.util.HashMap">
+ select userid from member 
+ where email=#{email} and name=#{name}
+</select>
+
+<!-- 비밀번호 찾기 -->
+ <select id="passwd_find" resultType="String" parameterType="java.util.HashMap">
+ select passwd from member 
+ where userid=#{userid} and email=#{email}
+</select>
  
 </mapper>

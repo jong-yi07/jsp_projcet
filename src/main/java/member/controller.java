@@ -84,6 +84,22 @@ public class controller extends HttpServlet {
 				session.setAttribute("name", name);
 				out.write(1+"");
 			}
+		}else if(uri.indexOf("id_find.do")!=-1) { //아이디 찾기
+			String email=request.getParameter("email");
+			String name=request.getParameter("name");
+			
+			String userid=dao.id_find(email,name);
+			request.setAttribute("userid", userid);
+			PrintWriter out=response.getWriter();
+			out.write(userid+"");
+		}else if(uri.indexOf("passwd_find.do")!=-1) { //아이디 찾기
+			String email=request.getParameter("email");
+			String userid=request.getParameter("userid");
+			
+			String passwd=dao.passwd_find(email,userid);
+			request.setAttribute("passwd", passwd);
+			PrintWriter out=response.getWriter();
+			out.write(passwd);
 		}
 	}
 

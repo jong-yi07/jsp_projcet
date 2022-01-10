@@ -82,4 +82,33 @@ public class memberDAO {
 		return name;
 	}
 
+	public String id_find(String email, String name) { //아이디 찾기
+		SqlSession session=null;
+		Map<String,String>map = new HashMap<String,String>();
+		map.put("email",email);
+		map.put("name",name);
+		
+		session=MybatisManager.getInstance().openSession(); 
+		String userid=session.selectOne("member.id_find",map);
+		
+		session.close();
+		
+		return userid;
+	}
+
+	public String passwd_find(String email, String userid) {
+		SqlSession session=null;
+		Map<String,String>map = new HashMap<String,String>();
+		map.put("email",email);
+		map.put("userid",userid);
+		
+		session=MybatisManager.getInstance().openSession(); 
+		String passwd=session.selectOne("member.passwd_find",map);
+		System.out.println("passwd:"+passwd);
+		
+		session.close();
+		
+		return passwd;
+	}
+
 }
