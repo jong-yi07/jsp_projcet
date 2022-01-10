@@ -99,7 +99,7 @@ public class controller extends HttpServlet {
 			String passwd=dao.passwd_find(email,userid);
 			request.setAttribute("passwd", passwd);
 			PrintWriter out=response.getWriter();
-			out.write(passwd);
+			out.write(passwd+"");
 		}
 	}
 
