@@ -1,11 +1,13 @@
 package menu.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import menu.dto.menuDTO;
 import sqlmap.MybatisManager;
 
 public class menuDAO {
@@ -23,17 +25,20 @@ public class menuDAO {
 		return result;
 	}
 
-	//게시물 목록
-	public List<menuDAO> list(int start, int end) {
-		List<menuDAO> list=null;
+
+
+	//게시물 목록,mybatis 활용
+	public List<menuDTO> list(int start, int end) {
+		List<menuDTO> list=null;
 		SqlSession session=null;
-		//혹시 있을지 모를 예외발생을 처리하기 위해 try문 쓰는게 좋다.
 		try {
 			session=MybatisManager.getInstance().openSession();
 			Map<String,Object> map=new HashMap<>();
 			map.put("start", start);
 			map.put("end", end);
-			list=session.selectList("menu.list", map); //네임스페이스:board id:list
+			list=session.selectList("menu.list", map); 						
+			System.out.println(list);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -41,5 +46,7 @@ public class menuDAO {
 		}
 		return list;
 	}
+	
+	
 
 }

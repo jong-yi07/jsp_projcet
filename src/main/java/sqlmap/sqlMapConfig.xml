@@ -7,7 +7,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 	 <typeAlias type="page.EmpDTO" alias="e" />
 	</typeAliases>
-	<!-- 알리아스(별칭) 설정 page.EmpDTO를 e로 표시 -->
 	<environments default="">
 		<environment id="">
 			<transactionManager type="JDBC" />

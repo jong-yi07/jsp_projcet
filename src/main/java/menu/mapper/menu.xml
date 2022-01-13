@@ -3,18 +3,33 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="menu">
-  <select id="list" resultType="menu.dto.menuDTO">
-  	 select *
+   	   	<resultMap type="menu.dto.menucountDTO" id="menucountDTO">
+	 <result column="name" property="name"/>
+	 <result column="vol" property="vol"/>
+	 <result column="count" property="count"/>
+	</resultMap>
+
+	<resultMap type="menu.dto.menuDTO" id="menuDTO">
+	 <result column="num" property="num"/>
+	 <result column="name" property="name"/>
+	 <result column="menu_detail" property="menu_detail"/>
+	 <result column="Classification" property="Classification"/>
+	 <collection property="menucountdto" resultMap="menucountDTO"></collection>
+	</resultMap>    
+	
+  <select id="list" resultMap="menuDTO"> 
+  select *
   from (
    select A.*, rownum as rn 
    from (
-      select num, name,menu_detail, Classification
-      from menu
-      order by num
+      select m.num, m.name,m.menu_detail, m.Classification,c.count
+        from menu m,menu_count c
+        where m.name = c.name and c.vol='tall'
+        order by num
   ) A
 )
 where rn between #{start} and #{end}
- </select>
+</select>
  
  <!-- 메뉴갯수 계산 -->
  <select id="count" resultType="int">

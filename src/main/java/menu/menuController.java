@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import menu.dao.menuDAO;
+import menu.dto.menuDTO;
 import page.Pager;
 
 
@@ -28,7 +29,7 @@ public class menuController extends HttpServlet {
 			//페이지나누기를 위한 코드
 			//레코드 갯수 계산
 			int count=dao.count();
-			System.out.println("count:"+count);
+			//System.out.println("count:"+count);
 			//페이지 나누기를 위한 처리
 			int curPage=1;
 			//숫자 처리는 null 포인트 익셉션이 잘 나기때문에 if문처리해줌
@@ -39,8 +40,9 @@ public class menuController extends HttpServlet {
 			int start=pager.getPageBegin();
 			int end=pager.getPageEnd();
 			
-			System.out.println("list.do 호출");
-			List<menuDAO> list=dao.list(start,end);
+			//System.out.println("list.do 호출");
+			List<menuDTO> list=dao.list(start,end);
+			//System.out.println(list);
 			request.setAttribute("list", list);
 			//페이지 네비게이션 출력을 위한 정보 전달
 			request.setAttribute("page", pager);

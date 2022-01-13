@@ -24,15 +24,17 @@ img{
   <th>이름</th>
   <th>메뉴 설명</th>
   <th>가격</th>
-  <th>장바구니 버튼</th>
+  <th></th>
  </tr>
- <c:forEach var="row" items="${list}">
+  <c:forEach var="row" items="${list}">
  <tr>
   <td><img src="../img/${row.num}.jpg"></td>
   <td>${row.name}</td>
   <td>${row.menu_detail}</td>
+  <td>${row.menucountdto.count}</td>
+  <td><button type="button">장바구니 버튼</button></td>
  </tr>
-</c:forEach> 
+</c:forEach>
 <tr align="center">
  <td colspan="2">
   <c:if test="${page.curPage > 1}">

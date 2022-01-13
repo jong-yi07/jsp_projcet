@@ -5,8 +5,21 @@ public class menuDTO {
 	private String name; //메뉴이름
 	private String menu_detail; //메뉴 설명
 	private String Classification; //메뉴 분류
+	private menucountDTO menucountdto; //join을 위한 객체
+		
+@Override
+	public String toString() {
+		return "menuDTO [num=" + num + ", name=" + name + ", menu_detail=" + menu_detail + ", Classification="
+				+ Classification + ", menucountdto=" + menucountdto + "]";
+	}
+	public menucountDTO getMenucountdto() {
+		return menucountdto;
+	}
+	public void setMenucountdto(menucountDTO menucountdto) {
+		this.menucountdto = menucountdto;
+	}
 	public menuDTO() {
-		super();
+		this.menucountdto=new menucountDTO();
 		// TODO Auto-generated constructor stub
 	}
 	public menuDTO(int num, String name, String menu_detail, String classification) {
@@ -15,11 +28,6 @@ public class menuDTO {
 		this.name = name;
 		this.menu_detail = menu_detail;
 		Classification = classification;
-	}
-	@Override
-	public String toString() {
-		return "menuDTO [num=" + num + ", name=" + name + ", menu_detail=" + menu_detail + ", Classification="
-				+ Classification + "]";
 	}
 	public int getNum() {
 		return num;
