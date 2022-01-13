@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import menu.dto.menuDTO;
+import menu.dto.menuviewDTO;
 import sqlmap.MybatisManager;
 
 public class menuDAO {
@@ -26,7 +27,7 @@ public class menuDAO {
 
 
 
-	//게시물 목록,mybatis 활용
+	//게시물 목록
 	public List<menuDTO> list(int start, int end) {
 		List<menuDTO> list=null;
 		SqlSession session=null;
@@ -36,6 +37,25 @@ public class menuDAO {
 			map.put("start", start);
 			map.put("end", end);
 			list=session.selectList("menu.list", map); 						
+			System.out.println(list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		return list;
+	}
+
+
+	//메뉴 상세페이지로 이동
+	public List<menuviewDTO> view(String name) {
+		System.out.println("name:"+name);
+		List<menuviewDTO> list=null;
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			list=session.selectList("menu.view",name); 						
 			System.out.println(list);
 			
 		} catch (Exception e) {

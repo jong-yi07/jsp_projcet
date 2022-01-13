@@ -11,6 +11,10 @@
 img{
 	width: 200px;
 }
+
+function list(page){
+	location.href="${path}/menu_servlet/list.do?curPage="+page;
+}
 </style>
 <script type="text/javascript">
 
@@ -29,7 +33,7 @@ img{
   <c:forEach var="row" items="${list}">
  <tr>
   <td><img src="../img/${row.num}.jpg"></td>
-  <td>${row.name}</td>
+  <td><a href="${path}/menu_servlet/view.do?name=${row.name}">${row.name}</a></td> <!-- 메뉴 상세페이지로 이동 -->
   <td>${row.menu_detail}</td>
   <td>${row.menucountdto.count}</td>
   <td><button type="button">장바구니 버튼</button></td>

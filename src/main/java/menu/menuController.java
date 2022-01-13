@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import menu.dao.menuDAO;
 import menu.dto.menuDTO;
+import menu.dto.menuviewDTO;
 import page.Pager;
 
 
@@ -47,6 +48,14 @@ public class menuController extends HttpServlet {
 			//페이지 네비게이션 출력을 위한 정보 전달
 			request.setAttribute("page", pager);
 			String page="/jsp/list.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		}else if(uri.indexOf("view.do")!=-1) { //메뉴 상세페이지로 이동 
+			String name=request.getParameter("name");
+			List<menuviewDTO> list=dao.view(name);
+			request.setAttribute("list", list);
+			
+			String page="/jsp/view.jsp"; //상세화면
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		}

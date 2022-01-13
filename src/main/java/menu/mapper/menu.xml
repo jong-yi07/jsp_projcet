@@ -9,6 +9,12 @@
 	 <result column="count" property="count"/>
 	</resultMap>
 
+<!-- 	<resultMap type="menu.dto.menuInformationDTO" id="menuinformationDTO">
+	 <result column="name" property="name"/>
+	 <result column="vol" property="vol"/>
+	 <result column="count" property="count"/>
+	</resultMap>  -->
+
 	<resultMap type="menu.dto.menuDTO" id="menuDTO">
 	 <result column="num" property="num"/>
 	 <result column="name" property="name"/>
@@ -17,6 +23,7 @@
 	 <collection property="menucountdto" resultMap="menucountDTO"></collection>
 	</resultMap>    
 	
+	<!-- 메뉴목록 -->
   <select id="list" resultMap="menuDTO"> 
   select *
   from (
@@ -34,6 +41,12 @@ where rn between #{start} and #{end}
  <!-- 메뉴갯수 계산 -->
  <select id="count" resultType="int">
   select count(*) from menu
+ </select>
+ 
+ <!-- 메뉴상세페이지 조회 -->
+ <select id="view" resultType="menu.dto.menuviewDTO">
+ select * from menu_view 
+ where name=#{name} and vol='tall'
  </select>
 </mapper>
 
