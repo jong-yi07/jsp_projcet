@@ -3,10 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 알리아스(별칭) 설정 page.EmpDTO를 e로 표시 -->
-	<typeAliases>
-	 <typeAlias type="page.EmpDTO" alias="e" />
-	</typeAliases>
 	<environments default="">
 		<environment id="">
 			<transactionManager type="JDBC" />
@@ -19,7 +15,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 실제 sql query 사용하겠다고 xml파일 등록-->
 	<mappers> <!-- memo.xml등록 -->
    <mapper resource="/member/mapper/member.xml" />
-   <mapper resource="/page/mapper/emp.xml" />
    <mapper resource="/menu/mapper/menu.xml" />
 	</mappers>
 </configuration>

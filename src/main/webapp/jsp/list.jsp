@@ -18,7 +18,7 @@ img{
 </head>
 <body>
 <section style="text-align: center; clear:both;">
-<table style="border: 1px dotted black; width: 700px">
+<table style="border: 1px dotted black;">
  <tr>
   <th>메뉴 사진</th>
   <th>이름</th>
