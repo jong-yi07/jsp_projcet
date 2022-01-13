@@ -49,21 +49,21 @@ public class menuDAO {
 
 
 	//메뉴 상세페이지로 이동
-	public List<menuviewDTO> view(String name) {
+	public menuviewDTO view(String name) {
 		System.out.println("name:"+name);
-		List<menuviewDTO> list=null;
+		menuviewDTO dto=null;
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			list=session.selectList("menu.view",name); 						
-			System.out.println(list);
+			dto=session.selectOne("menu.view",name); 						
+			System.out.println(dto);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(session != null) session.close();
 		}
-		return list;
+		return dto;
 	}
 	
 	
