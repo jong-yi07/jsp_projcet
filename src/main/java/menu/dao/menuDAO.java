@@ -65,7 +65,47 @@ public class menuDAO {
 		}
 		return dto;
 	}
+
+
+	//상세페이지에서 vol옵션에 따라 가격정보와 영양정보 바꾸기
+	public menuviewDTO count_change(int num, String vol) {
+		System.out.println("vol:"+vol);
+		menuviewDTO dto=null;
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			Map<String,Object> map=new HashMap<>();
+			map.put("num", num);
+			map.put("vol", vol);
+			dto=session.selectOne("menu.count_change",map); 						
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		return dto;
+	}
+
+
+	//검색
+	public List<menuviewDTO> searchList(String search_option, String keyword) {
+		List<menuviewDTO> list=null;
+		System.out.println("서치중"+search_option+","+keyword);
+		
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			Map<String,String> map=new HashMap<>();
+			map.put("search_option", search_option);
+			map.put("keyword", "%"+keyword+"%"); 
+			list=session.selectList("menu.searchList", map);
+			System.out.println(list);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	
-	
+
 
 }

@@ -58,6 +58,28 @@ public class menuController extends HttpServlet {
 			String page="/jsp/view.jsp"; //상세화면
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}else if(uri.indexOf("count_change")!=-1) { //상세페이지에서 영양정보와 가격정보 바꾸기 
+			int num=Integer.parseInt(request.getParameter("num"));
+			String vol=request.getParameter("vol");
+			menuviewDTO dto=dao.count_change(num,vol);
+			request.setAttribute("dto", dto);
+			System.out.println(dto);
+			
+			String page="/jsp/view.jsp"; //상세화면
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		}else if(uri.indexOf("search.do")!=-1) { //검색
+			String search_option=request.getParameter("search_option");
+			String keyword=request.getParameter("keyword");
+			System.out.println("서치중"+search_option+","+keyword);
+			
+			List<menuviewDTO> list=dao.searchList(search_option, keyword);
+			request.setAttribute("list", list);
+			request.setAttribute("search_option", search_option);
+			request.setAttribute("keyword", keyword);
+			String page="/jsp/search.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 		
 	}

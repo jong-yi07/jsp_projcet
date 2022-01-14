@@ -92,7 +92,7 @@ public class controller extends HttpServlet {
 			request.setAttribute("userid", userid);
 			PrintWriter out=response.getWriter();
 			out.write(userid+"");
-		}else if(uri.indexOf("passwd_find.do")!=-1) { //아이디 찾기
+		}else if(uri.indexOf("passwd_find.do")!=-1) { //비밀번호 찾기
 			String email=request.getParameter("email");
 			String userid=request.getParameter("userid");
 			

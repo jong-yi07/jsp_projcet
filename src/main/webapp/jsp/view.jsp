@@ -10,15 +10,44 @@
 <script type="text/javascript">
 $(function() {
 	$("#header").load("header.jsp"); 
+	
+	$("#vol").on("change", function(){ //값이 바뀌면 count값과 영양정보 값이 바뀜 
+		console.log($("#vol").val());
+		count_change();
+	});
 });
+
+function count_change(){
+	var param="num="+${dto.num}
+	+"&vol="+$("#vol").val();
+	
+ 	$.ajax({
+		type: "post",
+		url: "${path}/menu_servlet/count_change.do",
+		data: param,
+		success: function(){	
+			console.log(${dto.count});
+		} 
+	}); 
+}
 </script>
+<style type="text/css">
+select{
+	width: 50%;
+}
+
+#menu_img{
+	width: 400px;
+}
+
+</style>
 </head>
 <body>
-<div id="header"></div>
-
+<%-- <%@ include file="../include/menu.jsp" %> --%>
+<section style="text-align: center;">
 <table>
 <tr>
- <td rowspan="6"><img src="../img/${dto.num}.jpg"></td>
+ <td rowspan="6"><img src="../img/${dto.num}.jpg" id="menu_img"></td>
  <td colspan="4">${dto.name}</td>
 </tr>
 <tr>
@@ -44,10 +73,9 @@ $(function() {
   <td>단백질(g)</td>
   <td>${dto.protein }</td>
   <td>카페인</td>
-  <td>${dtp.caffeine }</td>
+  <td>${dto.caffeine }</td>
  </tr>
 </table>
-
 <select name="temp" id="temp">
  <option value="hot" selected="selected">hot</option>
  <option value="ice">ice</option>
@@ -57,7 +85,10 @@ $(function() {
  <option value="grande">grande</option>
  <option value="venti">venti</option>
 </select> 
-<!-- 사이즈 변경할때마다 count가 달라지는 것 -->
+</section>
+<h2>${dto.count }</h2>
+<button type="button">장바구니 담기</button>
+<!-- 사이즈 변경할때마다 count가 달라지는 것 https://goodsgoods.tistory.com/249 + 중복아이디검색 적용 -->
 <!-- 주문하기 버튼 구현  -->
 </body>
 </html>

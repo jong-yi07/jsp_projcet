@@ -48,6 +48,31 @@ where rn between #{start} and #{end}
  select * from menu_view 
  where name=#{name} and vol='tall'
  </select>
+ 
+  <!-- 메뉴상세페이지 조회 -->
+ <select id="count_change" resultType="menu.dto.menuviewDTO">
+ select * from menu_view 
+ where num=#{num} and vol=#{vol}
+ </select>
+ 
+  <!-- 메뉴서치 -->
+ <select id="searchList" resultType="menu.dto.menuviewDTO">
+  select num, name,menu_detail, classification,count
+   from menu_view
+   <choose> 
+    <when test="search_option != 'all'">
+     where ${search_option} like #{keyword}
+    </when>
+    <otherwise>
+    where (name like #{keyword} 
+     or menu_detail like #{keyword}
+     or Classification like #{keyword}) 
+    </otherwise>
+   </choose>
+   and vol='tall'
+   order by num
+ </select>
+ 
 </mapper>
 
 
