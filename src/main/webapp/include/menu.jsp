@@ -46,8 +46,8 @@
 									<li>
 										<a class="icon solid fa-sitemap" href=""><span>My</span></a>
 										<ul>
-											<li><a href="#">signup</a></li>
-											<li><a href="#">login</a></li>
+											<li><a href="signup1.jsp">signup</a></li>
+											<li><a href="login.jsp">login</a></li>
 											<li><a href="#">my information</a></li>
 										</ul>
 										</li>

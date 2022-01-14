@@ -110,5 +110,21 @@ public class memberDAO {
 		
 		return passwd;
 	}
+	
+	public memberDTO myinformation(String userid) {
+		memberDTO dto=new memberDTO();
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			dto=session.selectOne("member.myinformation",userid);
+			System.out.println(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
+		return dto;
+	}
 
 }

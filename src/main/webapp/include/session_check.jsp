@@ -5,7 +5,8 @@
 <c:if test="${sessionScope.userid == null}">
  <script>
   alert("로그인하신 후 사용하세요.");
-  location.href="${path}/ch07/session_login.jsp";
+  /* location.href="${path}/ch07/session_login.jsp"; */
+  location.href="${path}/jsp/login.jsp";
  </script>
 </c:if> 
 

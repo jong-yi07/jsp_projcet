@@ -37,5 +37,10 @@ values(#{userid},#{passwd},#{name},#{tel},#{email},#{birth_date})
  select passwd from member 
  where userid=#{userid} and email=#{email}
 </select>
- 
+
+<!-- 내 정보 조회하기 -->
+ <select id="myinformation" resultType="member.dto.memberDTO">
+select * from member
+where userid=#{userid}
+ </select>
 </mapper>

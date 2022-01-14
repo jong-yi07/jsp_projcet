@@ -45,7 +45,9 @@ function login(){
 </head>
 <body>
 <div id="header"></div>
+<%-- <%@ include file="../include/menu.jsp" %>  --%>
 <section style="text-align: center;">
+<a href="/jsp_project/member_servlet/myinformation.do">my information</a>
 <h2>로그인</h2>
 <form class="form-inline">
 				<div class="form-group">

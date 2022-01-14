@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import member.dao.memberDAO;
 import member.dto.memberDTO;
@@ -100,6 +101,17 @@ public class controller extends HttpServlet {
 			request.setAttribute("passwd", passwd);
 			PrintWriter out=response.getWriter();
 			out.write(passwd+"");
+		}else if(uri.indexOf("myinformation.do")!=-1) { //내 정보보기
+			HttpSession session=request.getSession();
+			String userid=(String)session.getAttribute("userid");
+			System.out.println(userid);
+			
+			memberDTO dto=new memberDTO();
+			dto=dao.myinformation(userid);
+			
+			String page="/jsp/body.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 	}
 

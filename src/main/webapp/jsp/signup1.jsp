@@ -60,8 +60,8 @@
 </style>
 </head>
 <body>
-	
-<div id="header"></div>
+<%@ include file="../include/menu.jsp" %>	
+<div id="header"></div> 
 
 	<section class="seciont1" style="text-align: center;">
 		<h1>회원가입</h1>
