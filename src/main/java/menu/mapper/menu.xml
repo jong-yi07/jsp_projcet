@@ -58,18 +58,17 @@ where rn between #{start} and #{end}
   <!-- 메뉴서치 -->
  <select id="searchList" resultType="menu.dto.menuviewDTO">
   select num, name,menu_detail, classification,count
-   from menu_view
+   from menu_view where vol='tall'
    <choose> 
     <when test="search_option != 'all'">
-     where ${search_option} like #{keyword}
+     and ${search_option} like #{keyword}
     </when>
     <otherwise>
-    where (name like #{keyword} 
+    and (name like #{keyword} 
      or menu_detail like #{keyword}
      or Classification like #{keyword}) 
     </otherwise>
    </choose>
-   and vol='tall'
    order by num
  </select>
  
