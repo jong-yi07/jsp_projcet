@@ -60,7 +60,7 @@
 </style>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>	
+<%-- <%@ include file="../include/menu.jsp" %>	 --%>
 <div id="header"></div> 
 
 	<section class="seciont1" style="text-align: center;">

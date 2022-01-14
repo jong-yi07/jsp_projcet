@@ -23,7 +23,7 @@ public class controller extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri=request.getRequestURI();
-		String contextPath=request.getContextPath();
+		String context=request.getContextPath();
 		memberDAO dao=new memberDAO();
 		
 		if(uri.indexOf("id_check.do")!=-1) { //아이디 중복체크
@@ -113,6 +113,36 @@ public class controller extends HttpServlet {
 			String page="/jsp/myinformation.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}else if(uri.indexOf("update.do")!=-1) { //회원정보 수정 
+			String userid=request.getParameter("userid");
+			String passwd=request.getParameter("passwd");
+			String name=request.getParameter("name");
+			String tel=request.getParameter("tel");
+			String email=request.getParameter("email");
+			//String join_date=request.getParameter("join_date");
+			String birth_date=request.getParameter("birth_date");
+			
+			memberDTO dto=new memberDTO();
+			dto.setUserid(userid);
+			dto.setPasswd(passwd);
+			dto.setName(name);
+			dto.setEmail(email);
+			dto.setTel(tel);
+			dto.setBirth_date(birth_date);
+			dao.update(dto);
+			response.sendRedirect(context+"/jsp/body.jsp");
+		}else if(uri.indexOf("delete.do")!=-1) { //회원정보 삭제
+			String userid=request.getParameter("userid");
+			dao.delete(userid);
+			HttpSession session=request.getSession();
+			session.invalidate();
+			response.sendRedirect(context+"/jsp/body.jsp");
+		}else if(uri.indexOf("logout.do")!=-1) { //로그아웃
+			//1. 세션 변수에 저장된 값들을 제거하는 동작
+			HttpSession session=request.getSession();
+			session.invalidate();//세션 초기화
+			//2. 페이지를 이동
+			response.sendRedirect(request.getContextPath()+"/jsp/login.jsp?");
 		}
 	}
 

@@ -43,4 +43,17 @@ values(#{userid},#{passwd},#{name},#{tel},#{email},#{birth_date})
 select * from member
 where userid=#{userid}
  </select>
+ 
+<!-- 내 정보 수정 -->
+ <update id="update">
+update member set
+passwd=#{passwd}, name=#{name}, email=#{email}, tel=#{tel}
+where userid=#{userid}
+ </update>
+ 
+ <!-- 내 정보 삭제 -->
+ <delete id="delete">
+ delete from member
+ where userid=#{userid}
+ </delete>
 </mapper>

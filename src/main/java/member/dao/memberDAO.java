@@ -96,6 +96,7 @@ public class memberDAO {
 		return userid;
 	}
 
+	//비밀번호 찾기
 	public String passwd_find(String email, String userid) {
 		SqlSession session=null;
 		Map<String,String>map = new HashMap<String,String>();
@@ -111,6 +112,7 @@ public class memberDAO {
 		return passwd;
 	}
 	
+	//내 정보보기
 	public memberDTO myinformation(String userid) {
 		System.out.println(userid);
 		memberDTO dto=new memberDTO();
@@ -126,6 +128,35 @@ public class memberDAO {
 		}
 		
 		return dto;
+	}
+
+	//회원정보 수정
+	public void update(memberDTO dto) {
+		System.out.println(dto);
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.selectOne("member.update",dto);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
+	}
+
+	//회원정보 삭제
+	public void delete(String userid) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.selectOne("member.delete",userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
 	}
 
 }

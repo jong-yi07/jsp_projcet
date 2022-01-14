@@ -8,6 +8,11 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 $(function(){
+	if(${sessionScope.userid!=null}){
+		alert("이미 로그인이 되어있습니다.");
+		location.href="body.jsp";
+	}
+	
 	$("#header").load("header.jsp");
 	
 	$("#login_btn").click(function(){

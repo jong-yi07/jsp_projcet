@@ -48,7 +48,8 @@
 										<ul>
 											<li><a href="signup1.jsp">signup</a></li>
 											<li><a href="login.jsp">login</a></li>
-											<li><a href="#">my information</a></li>
+											<li><a href="myinformation.jsp">my information</a></li>
+											<li><a href="/jsp_project/member_servlet/myinformation.do">my information</a></li>
 										</ul>
 										</li>
 								</ul>

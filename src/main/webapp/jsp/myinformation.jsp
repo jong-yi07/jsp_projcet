@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp"%>
 <%@ include file="../include/session_check.jsp"%> <!-- 로그인 되었는지 세션체크 -->
 <script type="text/javascript">
 $(function(){
@@ -26,7 +26,8 @@ $(function(){
 </script>
 </head>
 <body>
-<div id="#header"></div>
+<!-- <div id="header"></div> -->
+<%@ include file="../include/menu.jsp" %>
 <section>
 <form name="form1" method="post">
 			<table style="width:100%;">
