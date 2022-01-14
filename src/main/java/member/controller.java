@@ -108,8 +108,9 @@ public class controller extends HttpServlet {
 			
 			memberDTO dto=new memberDTO();
 			dto=dao.myinformation(userid);
+			request.setAttribute("dto", dto);
 			
-			String page="/jsp/body.jsp";
+			String page="/jsp/myinformation.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		}

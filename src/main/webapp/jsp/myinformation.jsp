@@ -26,10 +26,6 @@ $(function(){
 </script>
 </head>
 <body>
-
-		<%
-			String userid=(String)session.getAttribute("userid");
-		%>
 <div id="#header"></div>
 <section>
 <form name="form1" method="post">

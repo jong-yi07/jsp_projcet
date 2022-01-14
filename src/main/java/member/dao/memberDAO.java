@@ -112,6 +112,7 @@ public class memberDAO {
 	}
 	
 	public memberDTO myinformation(String userid) {
+		System.out.println(userid);
 		memberDTO dto=new memberDTO();
 		SqlSession session=null;
 		try {
