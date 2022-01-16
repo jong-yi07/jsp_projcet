@@ -1,6 +1,7 @@
 package menu;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import menu.dao.menuDAO;
 import menu.dto.menuDTO;
+import menu.dto.menuOrderDTO;
 import menu.dto.menuviewDTO;
 import page.Pager;
 
@@ -63,11 +66,13 @@ public class menuController extends HttpServlet {
 			String vol=request.getParameter("vol");
 			menuviewDTO dto=dao.count_change(num,vol);
 			request.setAttribute("dto", dto);
+			String result=dto.getCount();
 			System.out.println(dto);
-			
-			String page="/jsp/view.jsp"; //상세화면
-			RequestDispatcher rd=request.getRequestDispatcher(page);
-			rd.forward(request, response);
+			PrintWriter out=response.getWriter();
+			out.write(result+"");
+			//String page="/jsp/view.jsp"; //상세화면
+			//RequestDispatcher rd=request.getRequestDispatcher(page);
+			//rd.forward(request, response);
 		}else if(uri.indexOf("search.do")!=-1) { //검색
 			String search_option=request.getParameter("search_option");
 			String keyword=request.getParameter("keyword");
@@ -80,6 +85,29 @@ public class menuController extends HttpServlet {
 			String page="/jsp/search.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}else if(uri.indexOf("order_insert.do")!=-1) {
+			int num=Integer.parseInt(request.getParameter("num"));
+			String name=request.getParameter("name");
+			//int count=Integer.parseInt(request.getParameter("count"));
+			String vol=request.getParameter("vol");
+			String temp=request.getParameter("temp");
+			String cup=request.getParameter("cup");
+			HttpSession session = request.getSession();
+			String userid=(String) session.getAttribute("userid");
+			
+			//가격정보 얻어오기 
+			int count=dao.pay(name,vol);
+			
+			//System.out.println(num+","+vol+","+temp+","+userid+","+name+","+count);
+			menuOrderDTO dto=new menuOrderDTO();
+			dto.setName(name);
+			dto.setCount(count);
+			dto.setVol(vol);
+			dto.setTemp(temp);
+			dto.setCup(cup);
+			dto.setUserid(userid);
+			dao.order_insert(dto);
+			
 		}
 		
 	}

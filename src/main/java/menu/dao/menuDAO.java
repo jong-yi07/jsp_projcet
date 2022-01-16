@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import menu.dto.menuDTO;
+import menu.dto.menuOrderDTO;
 import menu.dto.menuviewDTO;
 import sqlmap.MybatisManager;
 
@@ -104,6 +105,39 @@ public class menuDAO {
 		}
 		return list;
 	}
+
+
+	//메뉴 장바구니에 넣기
+	public void order_insert(menuOrderDTO dto) {
+		System.out.println("주문:"+dto);
+		SqlSession session=null;
+		
+		session=MybatisManager.getInstance().openSession(); 
+		session.insert("menu.order_insert",dto);
+		
+		session.commit();
+		session.close();
+		
+	}
+
+
+	//가격정보
+	public int pay(String name, String vol) {
+		
+		SqlSession session=null;
+		Map<String,String>map = new HashMap<String,String>();
+		map.put("name",name);
+		map.put("vol",vol);
+		
+		session=MybatisManager.getInstance().openSession(); 
+		int pay=session.selectOne("menu.pay",map);
+		
+		session.close();
+		
+		return pay;
+	}
+
+
 
 	
 

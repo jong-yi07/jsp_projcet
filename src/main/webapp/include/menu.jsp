@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<!-- 템플릿 출처: https://html5up.net/strongly-typed -->
-<html>
-	<head>
-		<title>script cafe</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="homepage is-preload">
+     <link rel="stylesheet" href="assets/css/main.css" />
+	<div class="homepage is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -50,6 +42,8 @@
 											<li><a href="login.jsp">login</a></li>
 											<li><a href="myinformation.jsp">my information</a></li>
 											<li><a href="/jsp_project/member_servlet/myinformation.do">my information</a></li>
+											<li><a href="/jsp_project/member_servlet/hello.do">my information</a></li>
+											<li><a href="/jsp_project/member_servlet/hello2.do">my information</a></li>
 										</ul>
 										</li>
 								</ul>
@@ -64,7 +58,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+	</div>
+	</div>
    

@@ -15,6 +15,16 @@ $(function() {
 		console.log($("#vol").val());
 		count_change();
 	});
+	
+	$("#orderbtn").click(function(){ 
+		var userid='<%=(String)session.getAttribute("userid") %>';
+		
+		if(userid=="null"){
+			alert("로그인이 필요합니다.");
+		}
+		else
+			order_insert();
+	});
 });
 
 function count_change(){
@@ -25,8 +35,29 @@ function count_change(){
 		type: "post",
 		url: "${path}/menu_servlet/count_change.do",
 		data: param,
-		success: function(){	
+		success: function(result){
+			//$("#result").html(${dto.count});
+			$("#result").html(result);
 			console.log(${dto.count});
+		} 
+	}); 
+}
+
+function order_insert(){
+	var param="num="+${dto.num}
+	+"&name="+"${dto.name}"
+	+"&count="+${dto.count}
+	+"&temp="+$("#temp").val()
+	+"&vol="+$("#vol").val()
+	+"&cup="+$("#cup").val();
+	console.log(param);
+	
+ 	$.ajax({
+		type: "post",
+		url: "${path}/menu_servlet/order_insert.do",
+		data: param,
+		success: function(result){
+			alert("장바구니에 넣었습니다");
 		} 
 	}); 
 }
@@ -84,10 +115,17 @@ select{
  <option value="tall" selected="selected">tall</option>
  <option value="grande">grande</option>
  <option value="venti">venti</option>
-</select> 
+</select>
+<select name="cup" id="cup">
+ <option value="burial_cup" selected="selected">매장컵</option>
+ <option value="individual_cup">개인컵</option>
+ <option value="disposable_cup">일회용컵</option>
+</select>  
+
 </section>
 <h2>${dto.count }</h2>
-<button type="button">장바구니 담기</button>
+<font id="result" size="4"></font>
+<button type="button" id="orderbtn">장바구니 담기</button>
 <!-- 사이즈 변경할때마다 count가 달라지는 것 https://goodsgoods.tistory.com/249 + 중복아이디검색 적용 -->
 <!-- 주문하기 버튼 구현  -->
 </body>

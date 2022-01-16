@@ -72,6 +72,18 @@ where rn between #{start} and #{end}
    order by num
  </select>
  
+ <!-- 장바구니에 주문 -->
+ <insert id="order_insert">
+ insert into order_menu(order_num,name,vol,count,temp,cup,userid) 
+ values((select nvl(max(order_num)+1,1) from order_menu),#{name},#{vol},#{count},#{temp},#{cup},#{userid})
+ </insert>
+ 
+<!-- 가격정보 가져오기 -->
+<select id="pay" resultType="int">
+select count
+from menu_count
+where name=#{name} and vol=#{vol}
+</select>
 </mapper>
 
 
