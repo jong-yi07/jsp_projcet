@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import menu.dto.menuDTO;
 import menu.dto.menuOrderDTO;
+import menu.dto.menucommentDTO;
 import menu.dto.menuviewDTO;
 import sqlmap.MybatisManager;
 
@@ -135,6 +136,38 @@ public class menuDAO {
 		session.close();
 		
 		return pay;
+	}
+
+
+	//메뉴리뷰 추가
+	public void commentAdd(menucommentDTO dto) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.insert("menu.commentAdd", dto);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
+	}
+
+
+
+	public List<menucommentDTO> commentList(int num) {
+		List<menucommentDTO> list=null;
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			list=session.selectList("menu.commentList", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		return list;
 	}
 
 

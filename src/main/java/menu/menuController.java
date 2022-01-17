@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import menu.dao.menuDAO;
 import menu.dto.menuDTO;
 import menu.dto.menuOrderDTO;
+import menu.dto.menucommentDTO;
 import menu.dto.menuviewDTO;
 import page.Pager;
 
@@ -108,6 +109,29 @@ public class menuController extends HttpServlet {
 			dto.setUserid(userid);
 			dao.order_insert(dto);
 			
+		}else if(uri.indexOf("comment_add")!=-1) { //메뉴리뷰 추가
+			menucommentDTO dto=new menucommentDTO();
+			
+			int num=Integer.parseInt(request.getParameter("num"));
+			String name=request.getParameter("name");
+			String content=request.getParameter("content");
+			dto.setName(name);
+			dto.setNum(num);
+			dto.setContent(content);
+			System.out.println("댓글:"+dto);
+			dao.commentAdd(dto);
+			
+		}else if(uri.indexOf("commentList.do") != -1) { //댓글 조회 
+			int num=Integer.parseInt(request.getParameter("num"));
+			System.out.println("댓글을 위한 게시물 번호 : " + num);
+			//댓글 목록 리턴
+			List<menucommentDTO> list=dao.commentList(num);
+			//request 영역에 저장
+			request.setAttribute("list", list);
+			//출력페이지로 이동
+			String page="/jsp/comment_list.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 		
 	}

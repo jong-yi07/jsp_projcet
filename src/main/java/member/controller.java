@@ -14,6 +14,7 @@ import javax.websocket.Session;
 
 import member.dao.memberDAO;
 import member.dto.memberDTO;
+import menu.dto.menucommentDTO;
 
 
 @WebServlet("/member_servlet/*")
@@ -144,12 +145,6 @@ public class controller extends HttpServlet {
 			session.invalidate();//세션 초기화
 			//2. 페이지를 이동
 			response.sendRedirect(request.getContextPath()+"/jsp/login.jsp?");
-		}else if(uri.indexOf("hello.do")!=-1) { //임시
-			String page="/jsp/hello.jsp";
-			RequestDispatcher rd=request.getRequestDispatcher(page);
-			rd.forward(request, response);		
-		}else if(uri.indexOf("hello2.do")!=-1) { //임시
-			response.sendRedirect(context+"/jsp/hello.jsp");
 		}
 	}
 

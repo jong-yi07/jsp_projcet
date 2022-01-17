@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link rel="stylesheet" href="assets/css/main.css" />
 <title>Insert title here</title>
-<%@ include file="../include/header.jsp"%>
 <%@ include file="../include/session_check.jsp"%> <!-- 로그인 되었는지 세션체크 -->
 <script type="text/javascript">
 $(function(){
@@ -26,7 +26,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div id="header"></div>
+<div id="header"></div> 
 <%-- <%@ include file="../include/menu.jsp" %> --%>
 <%-- <%@ include file="hello.jsp" %> --%>
 <section>

@@ -16,15 +16,28 @@ $(function() {
 		count_change();
 	});
 	
-	$("#orderbtn").click(function(){ 
+	$("#orderbtn").click(function(){ //장바구니 추가
 		var userid='<%=(String)session.getAttribute("userid") %>';
 		
 		if(userid=="null"){
 			alert("로그인이 필요합니다.");
 		}
 		else
-			order_insert();
+		 	order_insert(); 
 	});
+	
+	$("#btnSave").click(function(){
+		alert("네");	
+	
+		var userid='<%=(String)session.getAttribute("userid") %>';
+		
+		if(userid=="null"){
+			alert("로그인이 필요합니다.");
+		}
+		else
+			comment_add(); 
+	});
+	
 });
 
 function count_change(){
@@ -60,6 +73,34 @@ function order_insert(){
 			alert("장바구니에 넣었습니다");
 		} 
 	}); 
+}
+
+function comment_add(){
+	var param="num=${dto.num}&name="+"${sessionScope.name }"
+	+"&content="+$("#content").val();
+	
+	console.log(param);
+	
+	$.ajax({
+		type: "post",
+		url: "${path}/menu_servlet/comment_add.do",
+		data: param,
+		success: function(){
+			$("#content").val("");
+			comment_list();
+		}
+	});
+}
+
+function comment_list(){
+	$.ajax({
+		type: "post",
+		url: "${path}/menu_servlet/commentList.do",
+		data: "num=${dto.num}",
+		success: function(result){//result변수는 responseText서버의 응답 텍스트
+			$("#commentList").html(result);
+		}
+	});
 }
 </script>
 <style type="text/css">
@@ -122,11 +163,32 @@ select{
  <option value="disposable_cup">일회용컵</option>
 </select>  
 
-</section>
 <h2>${dto.count }</h2>
 <font id="result" size="4"></font>
 <button type="button" id="orderbtn">장바구니 담기</button>
-<!-- 사이즈 변경할때마다 count가 달라지는 것 https://goodsgoods.tistory.com/249 + 중복아이디검색 적용 -->
-<!-- 주문하기 버튼 구현  -->
+</section>
+
+<!-- 메뉴리뷰 -->
+<table border="1" style="width: 100%">
+ <tr>
+ <c:choose>
+  <c:when test=" ${sessionScope.name==null}">
+  	로그인해야합니다
+  </c:when>
+  <c:otherwise>
+  <td>닉네임: ${sessionScope.name }</td>
+  </c:otherwise>
+ </c:choose>
+  <td rowspan="2">
+   <button type="button" id="btnSave">확인</button>
+  </td>
+ </tr>
+ <tr>
+  <td><textarea rows="5" cols="80" placeholder="내용을 입력하세요" id="content"></textarea></td>
+ </tr>
+</table>
+<!-- 댓글 목록을 출력할 영역 -->
+<div id="commentList"></div>
+
 </body>
 </html>

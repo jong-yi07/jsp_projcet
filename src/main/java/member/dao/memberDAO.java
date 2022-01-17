@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import member.dto.memberDTO;
+import menu.dto.menucommentDTO;
 import sqlmap.MybatisManager;
 
 public class memberDAO {
@@ -158,5 +159,6 @@ public class memberDAO {
 			if(session != null) session.close();
 		}
 	}
+
 
 }

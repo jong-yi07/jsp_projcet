@@ -84,6 +84,20 @@ select count
 from menu_count
 where name=#{name} and vol=#{vol}
 </select>
+
+ <!-- 리뷰 쓰기 -->
+ <insert id="commentAdd">
+  insert into menu_comment
+  (comment_num,num,name,content) values
+  ((select nvl(max(comment_num)+1,1) from menu_comment)
+    ,#{num}, #{name}, #{content})
+ </insert>
+ 
+  <!-- 리뷰 목록  -->
+ <select id="commentList" resultType="menu.dto.menucommentDTO">
+  select * from menu_comment 
+	where num=#{num}
+ </select>
 </mapper>
 
 
