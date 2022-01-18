@@ -172,6 +172,22 @@ public class menuDAO {
 	}
 
 
+	//댓글삭제
+	public void commentdelete(int comment_num) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.delete("menu.commentdelete", comment_num);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
+	}
+
+
 
 	
 

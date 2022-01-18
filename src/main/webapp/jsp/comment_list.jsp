@@ -14,7 +14,20 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 $(function(){
-	console.log(${dto.filename});
+	$(document).on("click",".comment_delete", function(){
+	//$("#comment_delete").click(function(){
+		var param="comment_num="+$(this).val();
+		
+		console.log(param);
+		 $.ajax({
+			type: "post",
+			url: "${path}/menu_servlet/comment_delete.do",
+			data: param,
+			success: function(){
+				alert("삭제되었습니다");
+			}
+		}); 
+	});
 });
 </script>
 </head>
@@ -32,6 +45,14 @@ $(function(){
    (<fmt:formatDate value="${row.reg_date}" 
    pattern="yyyy-MM-dd hh:mm:ss" />) <br>
    ${row.content}
+  </td>
+  <td>
+ <c:set var="session_userid" value="${sessionScope.name}" />
+ <c:set var="my_userid" value="${row.name}" />
+ <c:if test="${session_userid == my_userid}">
+ ${row.comment_num}
+ 	<button type="button" class="comment_delete" value="${row.comment_num}">덧글 삭제</button>
+ </c:if>
   </td>
  </tr>
 </c:forEach>

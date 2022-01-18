@@ -72,9 +72,9 @@ public class menuController extends HttpServlet {
 			int num=Integer.parseInt(request.getParameter("num"));
 			String vol=request.getParameter("vol");
 			menuviewDTO dto=dao.count_change(num,vol);
-			request.setAttribute("dto", dto);
 			String result=dto.getCount();
-			System.out.println(dto);
+			request.setAttribute("dto", dto);
+			System.out.println("사이즈 변경:"+dto);
 			PrintWriter out=response.getWriter();
 			out.write(result+"");
 			//String page="/jsp/view.jsp"; //상세화면
@@ -180,6 +180,14 @@ public class menuController extends HttpServlet {
 			String page="/jsp/comment_list.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}else if(uri.indexOf("comment_delete.do")!=-1) { //댓글삭제
+			int comment_num=Integer.parseInt(request.getParameter("comment_num"));
+			
+			System.out.println(request.getParameter("comment_num"));
+			System.out.println("comment_num:"+comment_num);
+			dao.commentdelete(comment_num);
+			String page="/menu_servlet/list.do";
+			response.sendRedirect(contextPath+page);
 		}
 		
 	}

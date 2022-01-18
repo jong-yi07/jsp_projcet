@@ -26,9 +26,8 @@ $(function(){
 </script>
 </head>
 <body>
-<div id="header"></div> 
-<%-- <%@ include file="../include/menu.jsp" %> --%>
-<%-- <%@ include file="hello.jsp" %> --%>
+<!-- <div id="header"></div>  -->
+<%@ include file="header.jsp" %> 
 <section>
 <form name="form1" method="post">
 			<table style="width:100%;">

@@ -98,6 +98,12 @@ where name=#{name} and vol=#{vol}
   select * from menu_comment 
 	where num=#{num}
  </select>
+ 
+ <!-- 리뷰 삭제 -->
+ <delete id="commentdelete">
+ delete from menu_comment
+ where comment_num=#{comment_num}
+ </delete>
 </mapper>
 
 

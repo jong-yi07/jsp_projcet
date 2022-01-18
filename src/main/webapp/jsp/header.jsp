@@ -23,7 +23,7 @@
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li><a class="icon solid fa-home" href="index.html"><span>Introduction</span></a></li>
+									<li><a class="icon solid fa-home" href="body.jsp"><span>Introduction</span></a></li>
 									<li>
 										<a href="#" class="icon fa-chart-bar"><span>Dropdown</span></a>
 										<ul>
@@ -41,21 +41,23 @@
 											<li><a href="#">Veroeros feugiat</a></li>
 										</ul>
 									</li>
-									<li><a class="icon solid fa-cog" href="left-sidebar.html"><span>Left Sidebar</span></a></li>
-									<li><a class="icon solid fa-retweet" href="right-sidebar.html"><span>Right Sidebar</span></a></li>
+									<li><a class="icon solid fa-cog" href="order.jsp"><span>menu</span></a></li>
+									<li><a class="icon solid fa-retweet" href="#"><span>Right Sidebar</span></a></li>
 									<li>
-										<a class="icon solid fa-sitemap" href=""><span>My</span></a>
+										<a class="icon solid fa-sitemap" href="#"><span>My</span></a>
 										<ul>
 											<li><a href="signup1.jsp">signup</a></li>
 											<li><a href="login.jsp">login</a></li>
-											<li><a href="myinformation.jsp">my information</a></li>
+											<li><a href="/jsp_project/member_servlet/logout.do">logout</a></li>
 											<li><a href="/jsp_project/member_servlet/myinformation.do">my information</a></li>
+											<li><a href="my.jsp">my information</a></li>
 										</ul>
 										</li>
 								</ul>
 							</nav>
 
 					</div>
+					
 				</section>
 				<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

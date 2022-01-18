@@ -27,9 +27,7 @@ $(function() {
 		 	order_insert(); 
 	});
 	
-	$("#btnSave").click(function(){
-		alert("네");	
-	
+	$("#btnSave").click(function(){ //댓글쓰기 
 		var userid='<%=(String)session.getAttribute("userid") %>';
 		
 		if(userid=="null"){
@@ -50,10 +48,12 @@ function count_change(){
 		type: "post",
 		url: "${path}/menu_servlet/count_change.do",
 		data: param,
+		/* success:function(){
+			console.log("카페인:"+${dto.caffeine });
+			console.log("가격:"+${dto.count });
+		} */
 		success: function(result){
-			//$("#result").html(${dto.count});
 			$("#result").html(result);
-			console.log(${dto.count});
 		} 
 	}); 
 }
@@ -78,7 +78,7 @@ function order_insert(){
 	}); 
 }
 
-function comment_add(){
+/* function comment_add(){
 	var form=$('#form1')[0];
 	var formData=new FormData(form);
 	
@@ -99,7 +99,7 @@ function comment_add(){
 			comment_list();
 		}
 	});
-}
+} */
 
 function comment_list(){
 	$.ajax({
@@ -154,7 +154,7 @@ select{
   <td>단백질(g)</td>
   <td>${dto.protein }</td>
   <td>카페인</td>
-  <td>${dto.caffeine }</td>
+  <td><input type="text" value="${dto.caffeine }"></td>
  </tr>
 </table>
 <select name="temp" id="temp">
@@ -172,7 +172,7 @@ select{
  <option value="disposable_cup">일회용컵</option>
 </select>  
 
-<h2>${dto.count }</h2>
+<h2><input type="text" value="${dto.count }"></h2>
 <font id="result" size="4"></font>
 <button type="button" id="orderbtn">장바구니 담기</button>
 </section>
@@ -195,8 +195,8 @@ select{
  </tr>
  <tr>
   <td><textarea rows="5" cols="80" placeholder="내용을 입력하세요" id="content" name="content"></textarea></td>
-  <td> <input type="text" value="${sessionScope.name }" name="name" id="name"></td>
-  <td> <input type="text" value="${dto.num}" name="num" id="num"></td>
+  <td> <input type="hidden" value="${sessionScope.name }" name="name" id="name"></td>
+  <td> <input type="hidden" value="${dto.num}" name="num" id="num"></td>
  </tr>
  <tr>
    <td rowspan="2">
