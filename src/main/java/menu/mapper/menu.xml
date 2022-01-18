@@ -88,9 +88,9 @@ where name=#{name} and vol=#{vol}
  <!-- 리뷰 쓰기 -->
  <insert id="commentAdd">
   insert into menu_comment
-  (comment_num,num,name,content) values
+  (comment_num,num,name,content,filename,filesize) values
   ((select nvl(max(comment_num)+1,1) from menu_comment)
-    ,#{num}, #{name}, #{content})
+    ,#{num}, #{name}, #{content},#{filename},#{filesize})
  </insert>
  
   <!-- 리뷰 목록  -->

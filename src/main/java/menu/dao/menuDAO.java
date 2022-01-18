@@ -155,13 +155,14 @@ public class menuDAO {
 	}
 
 
-
+	//메뉴 리뷰 출력 
 	public List<menucommentDTO> commentList(int num) {
 		List<menucommentDTO> list=null;
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
 			list=session.selectList("menu.commentList", num);
+			System.out.println(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

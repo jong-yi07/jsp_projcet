@@ -1,7 +1,9 @@
 package menu;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import common.Constants;
 import menu.dao.menuDAO;
 import menu.dto.menuDTO;
 import menu.dto.menuOrderDTO;
@@ -110,17 +116,59 @@ public class menuController extends HttpServlet {
 			dao.order_insert(dto);
 			
 		}else if(uri.indexOf("comment_add")!=-1) { //메뉴리뷰 추가
+			//파일(이미지) 업로드 처리
+			File uploadDir = new File(Constants.UPLOAD_PATH);
+			if(!uploadDir.exists()) {//업로드디렉토리가 존재하지 않으면
+				uploadDir.mkdir();//디렉토리를 만듦
+			}
+		
+			
+			MultipartRequest multi=new MultipartRequest(
+					request, Constants.UPLOAD_PATH, Constants.MAX_UPLOAD, 
+					"utf-8", new DefaultFileRenamePolicy());
+			
+			String filename=" ";
+			int filesize=0;
+			try {
+				Enumeration files=multi.getFileNames();
+				while(files.hasMoreElements()) {
+					String file1=(String)files.nextElement();
+					filename=multi.getFilesystemName(file1);
+					File f1=multi.getFile(file1);
+					if(f1 != null) {
+						filesize=(int)f1.length();//파일 사이즈 저장
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//파일 첨부를 하지 않을 경우
+			if(filename == null || filename.trim().equals("")) {
+				filename="-";
+			}
+			
+			//
 			menucommentDTO dto=new menucommentDTO();
 			
-			int num=Integer.parseInt(request.getParameter("num"));
-			String name=request.getParameter("name");
-			String content=request.getParameter("content");
+			/* 에러
+			 * int num=Integer.parseInt(request.getParameter("num")); String
+			 * name=request.getParameter("name"); String
+			 * content=request.getParameter("content");
+			 */
+			int num=Integer.parseInt(multi.getParameter("num"));
+			String name=multi.getParameter("name");
+			String content=multi.getParameter("content");
 			dto.setName(name);
 			dto.setNum(num);
 			dto.setContent(content);
+			dto.setFilename(filename);
+			dto.setFilesize(filesize);
 			System.out.println("댓글:"+dto);
 			dao.commentAdd(dto);
 			
+			String page="/menu_servlet/list.do";
+			response.sendRedirect(contextPath+page);
 		}else if(uri.indexOf("commentList.do") != -1) { //댓글 조회 
 			int num=Integer.parseInt(request.getParameter("num"));
 			System.out.println("댓글을 위한 게시물 번호 : " + num);

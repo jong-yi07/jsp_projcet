@@ -208,4 +208,12 @@ cup varchar2(50), -- 개인컵/일회용,매장컵
 userid varchar2(50) references member(userid)-- 유저아이디 
 );
 
+-- 메뉴리뷰 테이블
+create table menu_comment (
+comment_num number not null primary key, --댓글 일련번호 
+num number not null references menu(num), --Foreign Key 
+name varchar2(50) not null, --유저 닉네임
+content clob not null, --큰내용을 처리할 수 있게 clob을 써본다.
+reg_date date default sysdate --게시물 날짜 
+);
 commit;

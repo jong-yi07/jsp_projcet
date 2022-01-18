@@ -10,6 +10,7 @@
 <script type="text/javascript">
 $(function() {
 	$("#header").load("header.jsp"); 
+	comment_list();
 	
 	$("#vol").on("change", function(){ //값이 바뀌면 count값과 영양정보 값이 바뀜 
 		console.log($("#vol").val());
@@ -35,8 +36,9 @@ $(function() {
 			alert("로그인이 필요합니다.");
 		}
 		else
-			comment_add(); 
-	});
+			document.form1.submit();
+		
+	}); 
 	
 });
 
@@ -63,6 +65,7 @@ function order_insert(){
 	+"&temp="+$("#temp").val()
 	+"&vol="+$("#vol").val()
 	+"&cup="+$("#cup").val();
+	
 	console.log(param);
 	
  	$.ajax({
@@ -76,8 +79,12 @@ function order_insert(){
 }
 
 function comment_add(){
+	var form=$('#form1')[0];
+	var formData=new FormData(form);
+	
 	var param="num=${dto.num}&name="+"${sessionScope.name }"
-	+"&content="+$("#content").val();
+	+"&content="+$("#content").val()
+	+"&file="+formData;;
 	
 	console.log(param);
 	
@@ -85,6 +92,8 @@ function comment_add(){
 		type: "post",
 		url: "${path}/menu_servlet/comment_add.do",
 		data: param,
+		contentType:false,
+		processDate:false,
 		success: function(){
 			$("#content").val("");
 			comment_list();
@@ -169,6 +178,7 @@ select{
 </section>
 
 <!-- 메뉴리뷰 -->
+<form name="form1" method="post" enctype="multipart/form-data" action="${path}/menu_servlet/comment_add.do">
 <table border="1" style="width: 100%">
  <tr>
  <c:choose>
@@ -179,14 +189,22 @@ select{
   <td>닉네임: ${sessionScope.name }</td>
   </c:otherwise>
  </c:choose>
-  <td rowspan="2">
-   <button type="button" id="btnSave">확인</button>
-  </td>
  </tr>
  <tr>
-  <td><textarea rows="5" cols="80" placeholder="내용을 입력하세요" id="content"></textarea></td>
+<td><input type="file" name="file" id="file"></td>
  </tr>
+ <tr>
+  <td><textarea rows="5" cols="80" placeholder="내용을 입력하세요" id="content" name="content"></textarea></td>
+  <td> <input type="text" value="${sessionScope.name }" name="name" id="name"></td>
+  <td> <input type="text" value="${dto.num}" name="num" id="num"></td>
+ </tr>
+ <tr>
+   <td rowspan="2">
+   <button type="button" id="btnSave">확인</button>
+  </td>
+  </tr>
 </table>
+</form>
 <!-- 댓글 목록을 출력할 영역 -->
 <div id="commentList"></div>
 
