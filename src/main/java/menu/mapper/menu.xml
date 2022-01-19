@@ -123,6 +123,35 @@ where name=#{name} and vol=#{vol}
     ,#{name}, #{ref}, #{re_step}, #{re_level}
     , #{content} )
  </insert>
+ 
+ <!-- (체크박스로 선택된 메뉴목록) -->
+  <select id="list_checkbox" resultMap="menuDTO" parameterType="menu.VO.Check"> 
+      select m.num, m.name,m.menu_detail, m.Classification,c.count,c.vol
+        from menu m,menu_count c
+        where m.name = c.name and c.vol='tall'
+       <if test='#{coffee}!=null and #{coffee}.equals("on")'>
+        	and Classification='coffee' 
+        </if>
+        <if test="#{blended}!=null and #{blended}.equals('on')">
+        	and m.Classification='blended'
+        </if>
+        <if test="#{tea}!=null and #{tea}.equals('on')">
+        	and m.Classification='tea'
+        </if>
+        <if test="#{Fizzio}!=null and #{Fizzio}.equals('on')">
+        	and m.Classification='Fizzio'
+        </if>
+        <if test="#{Frappuccino}!=null and #{Frappuccino}.equals('on')">
+        	and m.Classification='Frappuccino'
+        </if>
+		<if test="#{drink}!=null and #{drink}.equals('on')">
+        	and m.Classification='drink'
+        </if>
+        <if test="#{etc}!=null and #{etc}.equals('on')">
+        	and m.Classification='etc'
+        </if>
+        order by num
+</select>
 </mapper>
 
 

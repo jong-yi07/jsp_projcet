@@ -6,14 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../css/common.css" />
 <script type="text/javascript">
 $(function(){
 	if(${sessionScope.userid!=null}){
 		alert("이미 로그인이 되어있습니다.");
 		location.href="body.jsp";
 	}
-	
-	$("#header").load("header.jsp");
 	
 	$("#login_btn").click(function(){
 		login();
@@ -49,10 +48,8 @@ function login(){
 </script>
 </head>
 <body>
-<div id="header"></div>
-<%-- <%@ include file="../include/menu.jsp" %>  --%>
+<%@ include file="../include/menu.jsp" %>
 <section style="text-align: center;">
-<a href="/jsp_project/member_servlet/myinformation.do">my information</a>
 <h2>로그인</h2>
 <form class="form-inline">
 				<div class="form-group">

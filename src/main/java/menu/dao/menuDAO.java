@@ -1,11 +1,13 @@
 package menu.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import menu.VO.Check;
 import menu.dto.menuDTO;
 import menu.dto.menuOrderDTO;
 import menu.dto.menucommentDTO;
@@ -39,7 +41,7 @@ public class menuDAO {
 			map.put("start", start);
 			map.put("end", end);
 			list=session.selectList("menu.list", map); 						
-			System.out.println(list);
+			//System.out.println(list);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,6 +221,23 @@ public class menuDAO {
 				if(session!=null) session.close();
 			}
 			
+		}
+
+
+		//체크박스 누름 
+		public List<menuDTO> list_checkbox(Check check) {
+			List<menuDTO> list=null;
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				list=session.selectList("menu.list_checkbox", check); 						
+				System.out.println("체크박스:"+list);		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session != null) session.close();
+			}
+			return list;
 		}
 
 

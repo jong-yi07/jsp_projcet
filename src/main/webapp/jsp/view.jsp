@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../css/common.css" />
 <script type="text/javascript">
 $(function() {
-	$("#header").load("header.jsp"); 
 	comment_list();
 	
 	$("#vol").on("change", function(){ //? 값이 바뀌면 count값과 영양정보 값이 바뀜 
@@ -124,7 +124,8 @@ select{
 </style>
 </head>
 <body>
-<%-- <%@ include file="../include/menu.jsp" %> --%>
+<%@ include file="../include/menu.jsp" %>
+
 <section style="text-align: center;">
 <table>
 <tr>

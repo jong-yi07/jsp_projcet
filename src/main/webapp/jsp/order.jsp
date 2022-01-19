@@ -29,7 +29,7 @@ function list(curPage){
 </script>
 </head>
 <body>
-<div id="header"></div>
+<%@ include file="../include/menu.jsp" %>
 <!-- 메뉴 페이징처리 -->
 <div id="result"></div>
 </body>

@@ -7,12 +7,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../css/common.css" />
+<style>
+#login_check, #name_check{
+	width:150px;
+	height:60px;
+}
+</style>
 <script type="text/javascript">
 var userid_check=false;
 var name_check=false;
-$(function(){
-	$("#header").load("header.jsp");
-	
+$(function(){	
 	$("#login_check").click(function(){ //아이디 중복검사 
 		var userid=$("#userid").val();
 		
@@ -207,13 +212,13 @@ label{
 </style>
 </head>
 <body>
-<div id="header"></div>
+<%@ include file="../include/menu.jsp" %>
 <section style="text-align: center;">
 <h2>회원가입</h2>
 		<div class="mb-3">
 			<form class="form-inline">
 				<div class="form-group">
-					<button type="button" id="login_check" class="float-left btn-sm" style=”display:inline-block;“>login check</button>
+					<button type="button" id="login_check" style=”display:inline-block;“>Id check</button>
 					<label for="userid" style="width:15%; display:inline-block;">Id : </label> 
 					<input type="text" class="form-control float-right" id="userid" placeholder="Enter Id" name="userid" style="width:60%; display:inline-block;">
 					<br> <font id="checkid" size="2"></font>
@@ -227,8 +232,8 @@ label{
 					<input type="password" class="form-control float-right" id="passwd2" placeholder="Enter password" name="passwd2" style="width:60%; display:inline-block;">
 				</div>
 				<div class="form-group">
+					<button type="button"  id="name_check" style=”display:inline-block“>name check</button>
 					<label for="name" class="float-left" style="width:30%; display:inline-block;">UseName : </label> 
-					<button type="button"  id="name_check" class="float-right btn-sm" style=”display:inline-block“>name check</button>
 					<input type="text" class="form-control float-right" id="name" placeholder="Enter Name" name="name" style="width:60%; display:inline-block;">
 					<br> <font id="checkname" size="2"></font>
 				</div>

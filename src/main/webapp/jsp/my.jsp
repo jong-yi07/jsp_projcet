@@ -16,8 +16,7 @@ $(function() {
 </script>
 </head>
 <body>
-<!-- <div id="header"></div> -->
-<%@ include file="header.jsp" %> 
+<%@ include file="../include/menu.jsp" %>
 <c:redirect url="/member_servlet/myinformation.do"></c:redirect>
 </body>
 </html>

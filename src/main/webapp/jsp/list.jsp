@@ -31,6 +31,20 @@ function list(page){
 <input name="keyword">
 <button id="btnSearch">검색</button>
 </form>
+
+<div>
+ <form action="${path}/menu_servlet/checkbox.do" method="post">
+  <input type="checkbox" class="form-check-input" name="coffee" id="coffee">coffee
+  <input type="checkbox" class="form-check-input" name="blended" id="blended">blended
+  <input type="checkbox" class="form-check-input" name="tea" id="tea">tea
+  <input type="checkbox" class="form-check-input" name="Fizzio" id="Fizzio">Fizzio
+  <input type="checkbox" class="form-check-input" name="Frappuccino" id="Frappuccino">Frappuccino
+  <input type="checkbox" class="form-check-input" name="drink" id="drink">drink
+  <input type="checkbox" class="form-check-input" name="etc" id="etc">etc
+  <input type="submit" value="메뉴분류">
+ </form>
+</div>
+
 <table style="border: 1px dotted black;">
  <tr>
   <th>메뉴 사진</th>

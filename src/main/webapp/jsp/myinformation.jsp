@@ -10,7 +10,6 @@
 <%@ include file="../include/session_check.jsp"%> <!-- 로그인 되었는지 세션체크 -->
 <script type="text/javascript">
 $(function(){
-	$("#header").load("header.jsp");
 	
 	$("#btnUpdate").click(function(){
 		document.form1.action="${path}/member_servlet/update.do";
@@ -26,8 +25,7 @@ $(function(){
 </script>
 </head>
 <body>
-<!-- <div id="header"></div>  -->
-<%@ include file="header.jsp" %> 
+<%@ include file="../include/menu.jsp" %>
 <section>
 <form name="form1" method="post">
 			<table style="width:100%;">

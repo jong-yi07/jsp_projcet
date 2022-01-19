@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+button{
+	background-color: #e7e7e7; 
+	color: black;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 250px;
+}
+
+button:hover {
+    background-color: #c0c0c0; /* Green */
+    color: white;
+}
+
+*{
+	font-family: '굴림';		
+}
+
+p{
+	font-family: '굴림';		
+}
+
+/* https://www.w3bai.com/ko/css/css3_buttons.html 버튼css */

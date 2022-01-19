@@ -7,10 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../css/common.css" />
 <script type="text/javascript">
 $(function(){
-	$("#header").load("header.jsp");
-	
 	$("#id_find").click(function(){
 		id_find();
 	});
@@ -42,7 +41,8 @@ function id_find(){
 </script>
 </head>
 <body>
-<div id="header"></div>
+<%@ include file="../include/menu.jsp" %>
+
 <section style="text-align: center;">
 <form class="form-inline">
 				<div class="form-group">

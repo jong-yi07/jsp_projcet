@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" href="../css/common.css" />
 <script type="text/javascript">
 	$(function() {
-		$("#header").load("header.jsp"); 
 		
 		$("#checkall").click(function() { //전체동의 체크시 
 			if ($("#checkall").prop("checked")) {
@@ -60,8 +60,7 @@
 </style>
 </head>
 <body>
-<%-- <%@ include file="../include/menu.jsp" %>	 --%>
-<div id="header"></div> 
+<%@ include file="../include/menu.jsp" %>
 
 	<section class="seciont1" style="text-align: center;">
 		<h1>회원가입</h1>

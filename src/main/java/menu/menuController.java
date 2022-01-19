@@ -3,6 +3,7 @@ package menu;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import common.Constants;
+import menu.VO.Check;
 import menu.dao.menuDAO;
 import menu.dto.menuDTO;
 import menu.dto.menuOrderDTO;
@@ -212,6 +214,20 @@ public class menuController extends HttpServlet {
 				dao.reply(dto);
 				String page="/menu_servlet/list.do";
 				response.sendRedirect(contextPath+page);
+			}else if(uri.indexOf("checkbox.do")!=-1) {
+				String coffee=request.getParameter("coffee");
+				String blended=request.getParameter("blended");
+				String tea=request.getParameter("tea");
+				String Fizzio=request.getParameter("Fizzio");
+				String Frappuccino=request.getParameter("Frappuccino");
+				String drink=request.getParameter("drink");
+				String etc=request.getParameter("etc");
+				
+				Check check=new Check(coffee,blended,tea,Fizzio,Frappuccino,drink,etc);
+				System.out.println(check);
+				List<menuDTO> list=dao.list_checkbox(check);
+				
+				
 			}
 		
 	}

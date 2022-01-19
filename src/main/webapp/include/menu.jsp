@@ -1,63 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <link rel="stylesheet" href="assets/css/main.css" />
-	<div class="homepage is-preload">
-		<div id="page-wrapper">
+<link rel="stylesheet" href="../css/basic.css" />
+<div>
+<nav class="nav1">
+  <a href="html/login.html" class="font1">로그인 | </a>
+  <a href="#" class="font1">매장찾기 | </a>
+  <a href="#" class="font1"> 고객의 소리 </a>
+  <a href="#" class="font1">이디야 공식몰 </a>
+  <a href="#" class="font1">블로그</a>
+  <a href="#" class="font1">인스타그램</a>
+  <a href="#" class="font1">페이스북</a>
+  <a href="#" class="font1">유튜브</a>
+  <input type="search" style="float: right; margin:10px; width:150px; height:20px;">
+</nav>
+<h2 class="title"><a href="index.html">script cafe</a></h2> 
 
-			<!-- Header -->
-				<section id="header">
-					<div class="container">
-
-						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">script cafe</a></h1>
-							<p>welcome, script cafe</p>
-
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li><a class="icon solid fa-home" href="index.html"><span>Introduction</span></a></li>
-									<li>
-										<a href="#" class="icon fa-chart-bar"><span>Dropdown</span></a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li><a href="#">Etiam dolore nisl</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a class="icon solid fa-cog" href="left-sidebar.html"><span>Left Sidebar</span></a></li>
-									<li><a class="icon solid fa-retweet" href="right-sidebar.html"><span>Right Sidebar</span></a></li>
-									<li>
-										<a class="icon solid fa-sitemap" href=""><span>My</span></a>
-										<ul>
-											<li><a href="signup1.jsp">signup</a></li>
-											<li><a href="login.jsp">login</a></li>
-											<li><a href="myinformation.jsp">my information</a></li>
-											<li><a href="/jsp_project/member_servlet/myinformation.do">my information</a></li>
-											<li><a href="/jsp_project/member_servlet/hello.do">my information</a></li>
-											<li><a href="/jsp_project/member_servlet/hello2.do">my information</a></li>
-										</ul>
-										</li>
-								</ul>
-							</nav>
-
-					</div>
-				</section>
-				<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-	</div>
-	</div>
-   
+<!-- 메뉴 -->
+<nav>
+ <ul class="myMenu" id="nav" >
+  <li><a href="#">메뉴</a>
+   <ul class="submenu">
+    <li><a href="html/menu_detail.html">음료</a></li>
+    <li><a href="#">푸드</a></li>
+    <li><a href="#">상품</a></li>
+    <li><a href="#">카드</a></li>
+    </ul>
+   </li>
+   <li><a href="#">매장</a>
+    <ul class="submenu">
+     <li><a href="#">커뮤니티 스토어매장</a></li>
+     <li><a href="#">드라이브스루 매장</a></li>
+    </ul>
+   <li><a href="#">메뉴</a>
+    <ul class="submenu">
+     <li><a href="../jsp/order.jsp">메뉴</a></li>
+     <li><a href="#">공간2</a></li>
+     <li><a href="#">공간3</a></li>
+    </ul>
+   <li><a href="#">내 정보</a>
+    <ul class="submenu">
+    <li><a href="../jsp/signup1.jsp">signup</a></li>
+	<li><a href="../jsp/login.jsp">login</a></li>
+	<li><a href="/jsp_project/member_servlet/logout.do">logout</a></li>
+	<li><a href="/jsp_project/member_servlet/myinformation.do">my information</a></li>
+	<li><a href="../jsp/my.jsp">my information</a></li>
+    </ul>
+</ul>
+</nav> 
+</div>
