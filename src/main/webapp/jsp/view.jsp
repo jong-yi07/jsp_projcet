@@ -12,7 +12,7 @@ $(function() {
 	$("#header").load("header.jsp"); 
 	comment_list();
 	
-	$("#vol").on("change", function(){ //값이 바뀌면 count값과 영양정보 값이 바뀜 
+	$("#vol").on("change", function(){ //? 값이 바뀌면 count값과 영양정보 값이 바뀜 
 		console.log($("#vol").val());
 		count_change();
 	});
@@ -195,6 +195,7 @@ select{
  </tr>
  <tr>
   <td><textarea rows="5" cols="80" placeholder="내용을 입력하세요" id="content" name="content"></textarea></td>
+  <td>점수: <input type="number" name="score" id="score" min="1" max="5"></td>
   <td> <input type="hidden" value="${sessionScope.name }" name="name" id="name"></td>
   <td> <input type="hidden" value="${dto.num}" name="num" id="num"></td>
  </tr>
@@ -207,6 +208,6 @@ select{
 </form>
 <!-- 댓글 목록을 출력할 영역 -->
 <div id="commentList"></div>
-
+<input type="hidden" value="${dto.num}" onclick="comment_list.jsp" id="number"> <!-- 게시물번호를 comment_list.jsp에 전송 -->
 </body>
 </html>

@@ -88,9 +88,10 @@ where name=#{name} and vol=#{vol}
  <!-- 리뷰 쓰기 -->
  <insert id="commentAdd">
   insert into menu_comment
-  (comment_num,num,name,content,filename,filesize) values
+  (comment_num,num,name,content,filename,filesize,score,ref,re_step,re_level) values
   ((select nvl(max(comment_num)+1,1) from menu_comment)
-    ,#{num}, #{name}, #{content},#{filename},#{filesize})
+    ,#{num}, #{name}, #{content},#{filename},#{filesize},#{score}
+    ,(select nvl(max(comment_num)+1,1) from menu_comment),1,0)
  </insert>
  
   <!-- 리뷰 목록  -->
@@ -104,6 +105,24 @@ where name=#{name} and vol=#{vol}
  delete from menu_comment
  where comment_num=#{comment_num}
  </delete>
+ 
+ <!-- 답글 순서 조정 -->
+ <update id="updateStep">
+  update menu_comment
+  set re_step=re_step+1
+  where ref=#{ref} and re_step >= #{re_step}
+ </update>
+ 
+  <!-- 답글 쓰기 -->
+ <insert id="reply">
+ insert into menu_comment 
+  (comment_num,num,name,ref
+  ,re_step,re_level,content)
+ values
+  ( (select nvl(max(comment_num)+1,1) from menu_comment),#{num}
+    ,#{name}, #{ref}, #{re_step}, #{re_level}
+    , #{content} )
+ </insert>
 </mapper>
 
 

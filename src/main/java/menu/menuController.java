@@ -115,7 +115,7 @@ public class menuController extends HttpServlet {
 			dto.setUserid(userid);
 			dao.order_insert(dto);
 			
-		}else if(uri.indexOf("comment_add")!=-1) { //메뉴리뷰 추가
+		}else if(uri.indexOf("comment_add")!=-1) { //메뉴댓글 추가
 			//파일(이미지) 업로드 처리
 			File uploadDir = new File(Constants.UPLOAD_PATH);
 			if(!uploadDir.exists()) {//업로드디렉토리가 존재하지 않으면
@@ -159,11 +159,13 @@ public class menuController extends HttpServlet {
 			int num=Integer.parseInt(multi.getParameter("num"));
 			String name=multi.getParameter("name");
 			String content=multi.getParameter("content");
+			int score=Integer.parseInt(multi.getParameter("score"));
 			dto.setName(name);
 			dto.setNum(num);
 			dto.setContent(content);
 			dto.setFilename(filename);
 			dto.setFilesize(filesize);
+			dto.setScore(score);
 			System.out.println("댓글:"+dto);
 			dao.commentAdd(dto);
 			
@@ -183,12 +185,34 @@ public class menuController extends HttpServlet {
 		}else if(uri.indexOf("comment_delete.do")!=-1) { //댓글삭제
 			int comment_num=Integer.parseInt(request.getParameter("comment_num"));
 			
-			System.out.println(request.getParameter("comment_num"));
-			System.out.println("comment_num:"+comment_num);
 			dao.commentdelete(comment_num);
 			String page="/menu_servlet/list.do";
 			response.sendRedirect(contextPath+page);
-		}
+		}else if(uri.indexOf("comment_reply.do")!=-1) {
+				menucommentDTO dto=new menucommentDTO();
+				int num=Integer.parseInt(request.getParameter("num")); //게시물 번호
+				String content=request.getParameter("content");
+				String name=request.getParameter("name");
+				int ref=dto.getRef();//답변그룹번호
+				int re_step=dto.getRe_step()+1;//출력순번
+				int re_level=dto.getRe_level()+1;//답변단계
+				//int comment_num=Integer.parseInt(request.getParameter("comment_num"))+re_step*1;
+				
+				//dto.setComment_num(comment_num);
+				dto.setNum(num);
+				dto.setContent(content);
+				dto.setName(name);
+				dto.setRef(ref);
+				dto.setRe_level(re_level);
+				dto.setRe_step(re_step);
+				System.out.println(dto);
+				//답글순서 조정
+				dao.updatestep(ref,re_step);
+				//답글 쓰기
+				dao.reply(dto);
+				String page="/menu_servlet/list.do";
+				response.sendRedirect(contextPath+page);
+			}
 		
 	}
 

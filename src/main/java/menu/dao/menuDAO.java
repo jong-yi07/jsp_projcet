@@ -188,6 +188,40 @@ public class menuDAO {
 	}
 
 
+	//답글 순서 조정
+		public void updatestep(int ref, int re_step) {
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				menucommentDTO dto=new menucommentDTO();
+				dto.setRef(ref);
+				dto.setRe_step(re_step);
+				session.update("menu.updateStep", dto);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session!=null) session.close();
+			}
+		}
+
+
+		//댓글쓰기 
+		public void reply(menucommentDTO dto) {
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				session.insert("menu.reply", dto);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session!=null) session.close();
+			}
+			
+		}
+
+
 
 	
 
