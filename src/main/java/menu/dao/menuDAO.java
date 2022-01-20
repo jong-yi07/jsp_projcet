@@ -225,8 +225,9 @@ public class menuDAO {
 
 
 		//체크박스 누름 
-		public List<menuDTO> list_checkbox(Check check) {
-			List<menuDTO> list=null;
+		public List<menuviewDTO> list_checkbox(Check check) {
+			System.out.println(check);
+			List<menuviewDTO> list=null;
 			SqlSession session=null;
 			try {
 				session=MybatisManager.getInstance().openSession();

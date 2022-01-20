@@ -198,9 +198,7 @@ public class menuController extends HttpServlet {
 				int ref=dto.getRef();//답변그룹번호
 				int re_step=dto.getRe_step()+1;//출력순번
 				int re_level=dto.getRe_level()+1;//답변단계
-				//int comment_num=Integer.parseInt(request.getParameter("comment_num"))+re_step*1;
-				
-				//dto.setComment_num(comment_num);
+
 				dto.setNum(num);
 				dto.setContent(content);
 				dto.setName(name);
@@ -224,10 +222,12 @@ public class menuController extends HttpServlet {
 				String etc=request.getParameter("etc");
 				
 				Check check=new Check(coffee,blended,tea,Fizzio,Frappuccino,drink,etc);
-				System.out.println(check);
-				List<menuDTO> list=dao.list_checkbox(check);
-				
-				
+				List<menuviewDTO> list=dao.list_checkbox(check);
+				request.setAttribute("list", list);
+				//페이지 네비게이션 출력을 위한 정보 전달
+				String page="/jsp/search.jsp";
+				RequestDispatcher rd=request.getRequestDispatcher(page);
+				rd.forward(request, response);
 			}
 		
 	}

@@ -6,11 +6,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css" />
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
-$(function(){
-	$("#header").load("header.jsp");
-	
+$(function(){	
 	$("#passwd_find").click(function(){
 		passwd_find();
 	});
@@ -46,7 +45,8 @@ function passwd_find(){
 </script>
 </head>
 <body>
-<div id="header"></div>
+<%@ include file="../include/menu.jsp" %>
+
 <section style="text-align: center;">
 <form class="form-inline">
 				<div class="form-group">

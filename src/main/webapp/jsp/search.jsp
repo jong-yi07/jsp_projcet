@@ -24,8 +24,8 @@ function list(page){
 </script>
 </head>
 <body>
-<%-- <%@ include file="../include/menu.jsp" %> --%>
-<div id="header"></div>
+<%@ include file="../include/menu.jsp" %>
+
 <section style="text-align: center; clear:both;">
 <form name="form1" method="post" action="${path}/menu_servlet/search.do">
 <select name="search_option">
@@ -59,6 +59,20 @@ function list(page){
 <input name="keyword">
 <button id="btnSearch">검색</button>
 </form>
+
+<div>
+ <form action="${path}/menu_servlet/checkbox.do" method="post">
+  <input type="checkbox"  name="coffee" id="coffee">coffee
+  <input type="checkbox"  name="blended" id="blended">blended
+  <input type="checkbox"  name="tea" id="tea">tea
+  <input type="checkbox"  name="Fizzio" id="Fizzio">Fizzio
+  <input type="checkbox"  name="Frappuccino" id="Frappuccino">Frappuccino
+  <input type="checkbox"  name="drink" id="drink">drink
+  <input type="checkbox"  name="etc" id="etc">etc
+  <input type="submit" value="메뉴분류">
+ </form>
+</div> 
+
 <table style="border: 1px dotted black; width:100%;">
  <tr>
   <th>메뉴 사진</th>
