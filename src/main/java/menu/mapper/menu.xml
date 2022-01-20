@@ -129,29 +129,11 @@ where name=#{name} and vol=#{vol}
   select num, name,menu_detail, classification,count
    from menu_view
         where vol='tall'
-        <choose>
-       <when test="coffee!=null and coffee.equals('on')">
-        	and Classification='coffee' 
-        </when>
-        <when test="blended!=null and blended.equals('on')">
-        	and Classification='blended'
-        </when>
-        <when test="tea!=null and tea.equals('on')">
-        	and Classification='tea'
-        </when>
-        <when test="Fizzio!=null and Fizzio.equals('on')">
-        	and Classification='Fizzio'
-        </when>
-        <when test="Frappuccino!=null and Frappuccino.equals('on')">
-        	and Classification='Frappuccino'
-        </when>
-		<when test="drink!=null and drink.equals('on')">
-        	and Classification='drink'
-        </when>
-        <when test="etc!=null and etc.equals('on')">
-        	and Classification='etc'
-        </when>
-        </choose>
+        <if test="checklist!=null">
+         and Classification in <foreach item="check" index="index" collection="checklist" open="(" separator="," close=")" >
+         #{check}
+         </foreach>
+        </if>
 </select>
 </mapper>
 

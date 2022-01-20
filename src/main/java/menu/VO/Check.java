@@ -1,6 +1,9 @@
 package menu.VO;
 
+import java.util.Arrays;
+
 public class Check {
+	private String checklist[];
 	private String coffee;
 	private String blended;
 	private String tea;
@@ -12,9 +15,10 @@ public class Check {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Check(String coffee, String blended, String tea, String fizzio, String frappuccino, String drink,
-			String etc) {
+	public Check(String[] checklist, String coffee, String blended, String tea, String fizzio, String frappuccino,
+			String drink, String etc) {
 		super();
+		this.checklist = checklist;
 		this.coffee = coffee;
 		this.blended = blended;
 		this.tea = tea;
@@ -25,8 +29,15 @@ public class Check {
 	}
 	@Override
 	public String toString() {
-		return "Check [coffee=" + coffee + ", blended=" + blended + ", tea=" + tea + ", Fizzio=" + Fizzio
-				+ ", Frappuccino=" + Frappuccino + ", drink=" + drink + ", etc=" + etc + "]";
+		return "Check [checklist=" + Arrays.toString(checklist) + ", coffee=" + coffee + ", blended=" + blended
+				+ ", tea=" + tea + ", Fizzio=" + Fizzio + ", Frappuccino=" + Frappuccino + ", drink=" + drink + ", etc="
+				+ etc + "]";
+	}
+	public String[] getChecklist() {
+		return checklist;
+	}
+	public void setChecklist(String[] checklist) {
+		this.checklist = checklist;
 	}
 	public String getCoffee() {
 		return coffee;
@@ -70,6 +81,7 @@ public class Check {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
+	
 	
 	
 }

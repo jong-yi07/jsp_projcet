@@ -213,15 +213,18 @@ public class menuController extends HttpServlet {
 				String page="/menu_servlet/list.do";
 				response.sendRedirect(contextPath+page);
 			}else if(uri.indexOf("checkbox.do")!=-1) {
-				String coffee=request.getParameter("coffee");
-				String blended=request.getParameter("blended");
-				String tea=request.getParameter("tea");
-				String Fizzio=request.getParameter("Fizzio");
-				String Frappuccino=request.getParameter("Frappuccino");
-				String drink=request.getParameter("drink");
-				String etc=request.getParameter("etc");
+//				String coffee=request.getParameter("coffee");
+//				String blended=request.getParameter("blended");
+//				String tea=request.getParameter("tea");
+//				String Fizzio=request.getParameter("Fizzio");
+//				String Frappuccino=request.getParameter("Frappuccino");
+//				String drink=request.getParameter("drink");
+//				String etc=request.getParameter("etc");
+				String checklist[]=request.getParameterValues("check");
+				Check check=new Check();
+				check.setChecklist(checklist);
 				
-				Check check=new Check(coffee,blended,tea,Fizzio,Frappuccino,drink,etc);
+				//Check check=new Check(coffee,blended,tea,Fizzio,Frappuccino,drink,etc);
 				List<menuviewDTO> list=dao.list_checkbox(check);
 				request.setAttribute("list", list);
 				//페이지 네비게이션 출력을 위한 정보 전달

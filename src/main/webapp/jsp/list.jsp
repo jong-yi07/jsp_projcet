@@ -34,6 +34,21 @@ function list(page){
 
 <div>
  <form action="${path}/menu_servlet/checkbox.do" method="post">
+  <input type="checkbox"  name="check" id="coffee" value="coffee">coffee
+  <input type="checkbox"  name="check" id="blended" value="blended">blended
+  <input type="checkbox"  name="check" id="tea" value="tea">tea
+  <input type="checkbox"  name="check" id="Fizzio" value="Fizzio">Fizzio
+  <input type="checkbox"  name="check" id="Frappuccino" value="Frappuccino">Frappuccino
+  <input type="checkbox"  name="check" id="drink" value="drink">drink
+  <input type="checkbox"  name="check" id="etc" value="etc">etc
+  <input type="submit" value="메뉴분류">
+ </form>
+</div>  
+
+<!-- 
+
+<div>
+ <form action="${path}/menu_servlet/checkbox.do" method="post">
   <input type="checkbox"  name="coffee" id="coffee">coffee
   <input type="checkbox"  name="blended" id="blended">blended
   <input type="checkbox"  name="tea" id="tea">tea
@@ -43,7 +58,8 @@ function list(page){
   <input type="checkbox"  name="etc" id="etc">etc
   <input type="submit" value="메뉴분류">
  </form>
-</div>  
+</div>
+ -->
 
 <table style="border: 1px dotted black;">
  <tr>
