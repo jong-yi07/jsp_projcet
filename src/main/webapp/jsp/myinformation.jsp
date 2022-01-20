@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<link rel="stylesheet" href="assets/css/main.css" />
 <title>Insert title here</title>
 <%@ include file="../include/session_check.jsp"%> <!-- 로그인 되었는지 세션체크 -->
+<%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../css/common.css" />
 <script type="text/javascript">
 $(function(){
 	
@@ -23,10 +24,19 @@ $(function(){
 	});
 });
 </script>
+<style type="text/css">
+.{
+	font-size: 14px;
+}
+
+input{
+	width: 700px;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<section>
+<section style="text-align: center;">
 <form name="form1" method="post">
 			<table style="width:100%;">
 			 <tr>
@@ -57,6 +67,8 @@ $(function(){
 			  <td>생년월일</td>
 			  <td><input type="text" name="birth_date" value="${dto.birth_date }"></td>
 			 </tr>
+			 <tr></tr>
+			 <tr></tr>
 			 <tr>
 			 <input type="hidden" name="userid" value="${dto.userid }" >
 			  <td><button type="button" id="btnUpdate">수정</button></td>
@@ -65,5 +77,7 @@ $(function(){
 			</table> 
 		</form>
 </section>
+
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

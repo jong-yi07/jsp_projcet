@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
 <nav class="nav1">
-  <a href="html/login.html" class="font1">로그인 | </a>
+  <a href="#" class="font1">로그인 | </a>
   <a href="#" class="font1">매장찾기 | </a>
   <a href="#" class="font1"> 고객의 소리 </a>
   <a href="#" class="font1">이디야 공식몰 </a>
@@ -14,7 +14,7 @@
   <a href="#" class="font1">유튜브</a>
   <input type="search" style="float: right; margin:10px; width:150px; height:20px;">
 </nav>
-<h2 class="title"><a href="index.html">script cafe</a></h2> 
+<h2 class="title"><a href="index.jsp">script cafe</a></h2> 
 
 <!-- 메뉴 -->
 <nav>
@@ -42,10 +42,11 @@
     <ul class="submenu">
     <li><a href="../jsp/signup1.jsp">signup</a></li>
 	<li><a href="../jsp/login.jsp">login</a></li>
-	<li><a href="/jsp_project/member_servlet/logout.do">logout</a></li>
+	<li><a href="${path}/member_servlet/logout.do">logout</a></li>
 	<li><a href="${path}/member_servlet/myinformation.do">my information</a></li>
 	<li><a href="${path}/menu_servlet/myorder.do">my order</a></li>
     </ul>
 </ul>
 </nav> 
 </div>
+<br><br><br><br><br> 

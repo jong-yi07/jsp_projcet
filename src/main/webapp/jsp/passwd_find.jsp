@@ -62,5 +62,7 @@ function passwd_find(){
 				<br> <br><button type="button" id="login_btn">login</button>
 </form>
 </section>
+
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

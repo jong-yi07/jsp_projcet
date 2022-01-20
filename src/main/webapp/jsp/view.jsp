@@ -210,5 +210,7 @@ select{
 <!-- 댓글 목록을 출력할 영역 -->
 <div id="commentList"></div>
 <input type="hidden" value="${dto.num}" onclick="comment_list.jsp" id="number"> <!-- 게시물번호를 comment_list.jsp에 전송 -->
+
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

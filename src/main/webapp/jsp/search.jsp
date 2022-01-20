@@ -92,5 +92,7 @@ function list(page){
 </c:forEach>
 </table>
 </section>
+
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

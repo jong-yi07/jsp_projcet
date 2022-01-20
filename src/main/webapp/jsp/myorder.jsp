@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<%@ include file="../include/session_check.jsp"%> <!-- 로그인 되었는지 세션체크 -->
 <link rel="stylesheet" href="../css/common.css" />
 </head>
 <body>
@@ -45,5 +46,7 @@
 <h2>총 금액은 <c:out value="${ total_count}"></c:out>원입니다.</h2>
 </table>
 </section>
+
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

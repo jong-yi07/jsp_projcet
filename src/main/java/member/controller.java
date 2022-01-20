@@ -114,7 +114,6 @@ public class controller extends HttpServlet {
 			String page="/jsp/myinformation.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
-			//response.sendRedirect(context+page);
 		}else if(uri.indexOf("update.do")!=-1) { //회원정보 수정 
 			String userid=request.getParameter("userid");
 			String passwd=request.getParameter("passwd");

@@ -227,7 +227,6 @@ public class menuController extends HttpServlet {
 				//Check check=new Check(coffee,blended,tea,Fizzio,Frappuccino,drink,etc);
 				List<menuviewDTO> list=dao.list_checkbox(check);
 				request.setAttribute("list", list);
-				//페이지 네비게이션 출력을 위한 정보 전달
 				String page="/jsp/search.jsp";
 				RequestDispatcher rd=request.getRequestDispatcher(page);
 				rd.forward(request, response);

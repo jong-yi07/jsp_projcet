@@ -11,7 +11,7 @@
 $(function(){
 	if(${sessionScope.userid!=null}){
 		alert("이미 로그인이 되어있습니다.");
-		location.href="../index.html";
+		location.href="index.jsp";
 	}
 	
 	$("#login_btn").click(function(){
@@ -39,7 +39,7 @@ function login(){
 				$("#result").html("아이디 또는 비밀번호가 틀렸습니다.");
 				$("#result").attr('color','red');
 			}else if(result==1){
-				location.href="body.jsp";
+				location.href="index.jsp";
 			}
 		} 
 	});
@@ -66,5 +66,7 @@ function login(){
 				<button type="button" id="passwd_find">비밀번호 찾기</button>
 </form>
 </section>
+
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

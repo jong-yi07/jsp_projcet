@@ -1,12 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/basic.css" />
-<script src="../include/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
-</head>
+<%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../css/basic.css" />
 <style>
 .div1{
   width: 100%;
@@ -240,51 +241,9 @@ ul{
 	margin:15px;
 }
 </style>
+</head>
 <body>
-<header>
-<nav class="nav1">
-  <a href="html/login.html" class="font1">로그인 | </a>
-  <a href="#" class="font1">매장찾기 | </a>
-  <a href="#" class="font1"> 고객의 소리 </a>
-  <a href="#" class="font1">이디야 공식몰 </a>
-  <a href="#" class="font1">블로그</a>
-  <a href="#" class="font1">인스타그램</a>
-  <a href="#" class="font1">페이스북</a>
-  <a href="#" class="font1">유튜브</a>
-  <input type="search" style="float: right; margin:10px; width:150px; height:20px;">
-</nav>
-<h2 class="title"><a href="index.html">script cafe</a></h2> 
-
-<!-- 메뉴 -->
-<nav>
- <ul class="myMenu" id="nav" >
-  <li><a href="#">메뉴</a>
-   <ul class="submenu">
-    <li><a href="html/menu_detail.html">음료</a></li>
-    <li><a href="#">푸드</a></li>
-    <li><a href="#">상품</a></li>
-    <li><a href="#">카드</a></li>
-    </ul>
-   </li>
-   <li><a href="#">매장</a>
-    <ul class="submenu">
-     <li><a href="#">커뮤니티 스토어매장</a></li>
-     <li><a href="#">드라이브스루 매장</a></li>
-    </ul>
-   <li><a href="#">공간1</a>
-    <ul class="submenu">
-     <li><a href="html/menu.html">주문</a></li>
-     <li><a href="#">공간2</a></li>
-     <li><a href="#">공간3</a></li>
-    </ul>
-   <li><a href="#">내 정보</a>
-    <ul class="submenu">
-     <li><a href="html/singup.html">회원가입</a></li>
-     <li><a href="html/login.html">로그인</a></li>
-    </ul>
-</ul>
-</nav> 
-</header>
+<%@ include file="../include/menu.jsp" %>
 
 <!-- section -->
 <div class="div1">
@@ -299,7 +258,7 @@ ul{
            <li class="menu">
            <a href="#">
             <span class="menu1 span1" style="text-align: center;">
-             <img src="images/snow_mint_blended.PNG" alt="스노무 민트 초콜릿 블랜디드">
+             <img src="../images/snow_mint_blended.PNG" alt="스노무 민트 초콜릿 블랜디드">
            	 <span class="menu_detail1 span2" >
            	  <span aria-hidden="true" class="span3">Snow Mint Chocolate Blended</span>
            	  스노우 민트 초콜릿 블렌디드
@@ -310,7 +269,7 @@ ul{
            <li class="menu">
             <a href="#">
              <span class="menu2 span1" style="text-align: center;">
-              <img src="images/cookie_latte.PNG" alt="홀리데이 돌체 쿠키 라떼">
+              <img src="../images/cookie_latte.PNG" alt="홀리데이 돌체 쿠키 라떼">
               <span class="menu_detail2 span2">
                <span aria-hidden="true" class="span3">
                 Holiday Dolce Cookie Latte
@@ -323,7 +282,7 @@ ul{
            <li class="menu">
             <a href="#">
              <span class="menu3 span1" style="text-align: center;">
-              <img src="images/chamomile_relaxer.PNG" alt="핑크 캐모마일 릴렉서">
+              <img src="../images/chamomile_relaxer.PNG" alt="핑크 캐모마일 릴렉서">
               <span class="menu_detail3 span2">
                <span aria-hidden="true" class="span3">
                 Pink Chamomile Relaxer
@@ -363,24 +322,6 @@ ul{
   <img src="images/button.png" style="width:10px;"></button>
 </div>
 
-<footer class="footer">
-<div>
-<p class="font2">개임정보처리방침</p>
-<p class="font2">멤버스 이용약관</p>
-<p class="font2">가맹안내</p>
-<p class="font2">대량쿠폰구매</p>
-<p class="font2">점주의 방</p>
-</div>
-<hr>
-<div>
- <select name="language" id="language">
-    <option value="korean" selected="selected">korean</option>
-    <option value="english">english</option>
-    <option value="chinese">chinese</option>
- </select>
-<p class="font3">SCRIPT COFFEE</p>
-<p class="font4">주소:서울시 성동구 왕십리로 303 4층</p>
-</div>
-</footer>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
