@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="../css/basic.css" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
 <nav class="nav1">
   <a href="html/login.html" class="font1">로그인 | </a>
@@ -26,10 +27,10 @@
     <li><a href="#">카드</a></li>
     </ul>
    </li>
-   <li><a href="#">매장</a>
+   <li><a href="#">메뉴</a>
     <ul class="submenu">
-     <li><a href="#">커뮤니티 스토어매장</a></li>
-     <li><a href="#">드라이브스루 매장</a></li>
+     <li><a href="../jsp/order.jsp">메뉴</a></li>
+     <li><a href="#">...</a></li>
     </ul>
    <li><a href="#">메뉴</a>
     <ul class="submenu">
@@ -42,8 +43,8 @@
     <li><a href="../jsp/signup1.jsp">signup</a></li>
 	<li><a href="../jsp/login.jsp">login</a></li>
 	<li><a href="/jsp_project/member_servlet/logout.do">logout</a></li>
-	<li><a href="/jsp_project/member_servlet/myinformation.do">my information</a></li>
-	<li><a href="../jsp/my.jsp">my information</a></li>
+	<li><a href="${path}/member_servlet/myinformation.do">my information</a></li>
+	<li><a href="${path}/menu_servlet/myorder.do">my order</a></li>
     </ul>
 </ul>
 </nav> 

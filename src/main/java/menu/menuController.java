@@ -231,6 +231,15 @@ public class menuController extends HttpServlet {
 				String page="/jsp/search.jsp";
 				RequestDispatcher rd=request.getRequestDispatcher(page);
 				rd.forward(request, response);
+			}else if(uri.indexOf("myorder.do")!=-1) {//주문확인서
+				HttpSession session = request.getSession();
+				String userid=(String) session.getAttribute("userid");
+				
+				List<menuOrderDTO> list=dao.myorder(userid);
+				request.setAttribute("list", list);
+				String page="/jsp/myorder.jsp";
+				RequestDispatcher rd=request.getRequestDispatcher(page);
+				rd.forward(request, response);
 			}
 		
 	}

@@ -11,7 +11,7 @@
 $(function(){
 	if(${sessionScope.userid!=null}){
 		alert("이미 로그인이 되어있습니다.");
-		location.href="body.jsp";
+		location.href="../index.html";
 	}
 	
 	$("#login_btn").click(function(){

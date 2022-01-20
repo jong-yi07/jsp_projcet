@@ -226,13 +226,28 @@ public class menuDAO {
 
 		//체크박스 누름 
 		public List<menuviewDTO> list_checkbox(Check check) {
-			System.out.println(check);
 			List<menuviewDTO> list=null;
 			SqlSession session=null;
 			try {
 				session=MybatisManager.getInstance().openSession();
 				list=session.selectList("menu.list_checkbox", check); 						
 				System.out.println("체크박스:"+list);		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session != null) session.close();
+			}
+			return list;
+		}
+
+
+		//주문확인서
+		public List<menuOrderDTO> myorder(String userid) {
+			List<menuOrderDTO> list=null;
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				list=session.selectList("menu.myorder", userid); 							
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

@@ -135,6 +135,13 @@ where name=#{name} and vol=#{vol}
          </foreach>
         </if>
 </select>
+
+<!-- 주문정보 -->
+<select id="myorder" resultType="menu.dto.menuOrderDTO">
+select * 
+from order_menu
+where userid=#{userid}
+</select>
 </mapper>
 
 
