@@ -1,7 +1,10 @@
 package admin;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +18,13 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import admin.dao.adminDAO;
+import common.Constants;
 import menu.dto.menuOrderDTO;
+import menu.dto.menuviewDTO;
 
 
 @WebServlet("/admin_servlet/*")
@@ -87,8 +95,71 @@ public class adminController extends HttpServlet {
 
 			
 			//System.out.println(data);
+					
+		}else if(uri.indexOf("menu_insert")!=-1) { //상품등록
+			//파일업로드 처리
+			File uploadDir = new File(Constants.MENU_UPLOAD_PATH);
+			if(!uploadDir.exists()) {//업로드디렉토리가 존재하지 않으면
+				uploadDir.mkdir();//디렉토리를 만듦
+			}
 			
+			MultipartRequest multi=new MultipartRequest(
+					request, Constants.MENU_UPLOAD_PATH, Constants.MAX_UPLOAD, 
+					"utf-8", new DefaultFileRenamePolicy());
 			
+			String name=multi.getParameter("name");
+			String menu_detail=multi.getParameter("menu_detail");
+			String classification=multi.getParameter("classification");
+			String vol=multi.getParameter("vol");
+			int count=Integer.parseInt(multi.getParameter("count"));
+			int caffeine=Integer.parseInt(multi.getParameter("caffeine"));
+			int fat=Integer.parseInt(multi.getParameter("fat"));
+			int kcal=Integer.parseInt(multi.getParameter("kcal"));
+			int natrium=Integer.parseInt(multi.getParameter("natrium"));
+			int protein=Integer.parseInt(multi.getParameter("protein"));
+			int sugar=Integer.parseInt(multi.getParameter("sugar"));
+
+			String filename=" "; //공백 1개
+			int filesize=0;
+			try {
+				Enumeration files=multi.getFileNames();
+				while(files.hasMoreElements()) {
+					String file1=(String)files.nextElement();
+					filename=multi.getFilesystemName(file1);
+					File f1=multi.getFile(file1);
+					if(f1 != null) {
+						filesize=(int)f1.length();//파일 사이즈 저장
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			menuviewDTO dto=new menuviewDTO();
+			dto.setName(name);
+			dto.setMenu_detail(menu_detail);
+			dto.setClassification(classification);
+			dto.setCount(count);
+			dto.setVol(vol);
+			dto.setCaffeine(caffeine);
+			dto.setFat(fat);
+			dto.setKcal(kcal);
+			dto.setNatrium(natrium);
+			dto.setProtein(protein);
+			dto.setSugar(sugar);
+			
+			//파일 첨부를 하지 않을 경우
+			if(filename == null || filename.trim().equals("")) {
+				filename="-";
+			}
+			
+			dto.setFilename(filename);
+			dto.setFilesize(filesize);
+			
+			dao.insert(dto);
+			String page="/jsp/list.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 	}
 

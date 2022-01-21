@@ -74,7 +74,7 @@ public class menuController extends HttpServlet {
 			int num=Integer.parseInt(request.getParameter("num"));
 			String vol=request.getParameter("vol");
 			menuviewDTO dto=dao.count_change(num,vol);
-			String result=dto.getCount();
+			int result=dto.getCount();
 			request.setAttribute("dto", dto);
 			System.out.println("사이즈 변경:"+dto);
 			PrintWriter out=response.getWriter();

@@ -148,5 +148,11 @@ select name,count(name) purchases
 from order_menu
 group by name
 </select>
+
+<!--  메뉴저장 -->  
+ <insert id="insert">
+  insert into menu_view(num,name,menu_detial,classification,count,vol,caffeine,fat,kcal,natrium,protein,sugar)
+values((select nvl(max(num)+1,1) from menu_view),'커피','커피','coffee',1000,'tall',0.0,0,0,0,0)
+ </insert>
 </mapper>
 

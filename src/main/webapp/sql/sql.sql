@@ -28,9 +28,9 @@ name varchar2(100) UNIQUE,--메뉴이름
 menu_detail varchar2(4000), --메뉴설명
 Classification varchar2(50) --메뉴분류
 );
-select * from menu;
+select * from menu where Classification='bottle';
 delete from menu;
-
+select * from menu;
 insert into menu(num,name,menu_detail,Classification) values((select nvl(max(num)+1,1) from menu),'아메리카노','깔끔하고 상큼함이 특징인 커피','coffee');
 insert into menu(num,name,menu_detail,Classification) values((select nvl(max(num)+1,1) from menu),'카라멜 마키아또','향긋한 바닐라 시럽과 따뜻한 스팀 밀크 위에 풍성한 우유 거품을 얹고 점을 찍듯이 에스프레소를 부은 후 벌집 모양으로 카라멜 드리즐을 올린 달콤한 커피 음료','coffee');
 insert into menu(num,name,menu_detail,Classification) values((select nvl(max(num)+1,1) from menu),'카푸치노','풍부하고 진한 에스프레소에 따뜻한 우유와 벨벳 같은 우유 거품이 1:1 비율로 어우러져 마무리된 커피 음료','coffee');
@@ -208,18 +208,22 @@ cup varchar2(50), -- 개인컵/일회용,매장컵
 userid varchar2(50) references member(userid)-- 유저아이디 
 );
 
--- 메뉴리뷰 테이블
-create table menu_comment (
-comment_num number not null primary key, --댓글 일련번호 
-num number not null references menu(num), --Foreign Key(게시물번호) 
-name varchar2(50) not null, --유저 닉네임
-content clob not null, --큰내용을 처리할 수 있게 clob을 써본다.
-filename varchar2(200), -- 이미지 이름
-filesize number default 0, --이미지 사이즈
-reg_date date default sysdate --게시물 날짜 
-);
+select * from order_menu;
 
--- 메뉴리뷰 테이블(수정)
+drop table menu_comment;
+select * from menu_comment;
+
+-- 메뉴리뷰 테이블
+--create table menu_comment (
+--comment_num number not null primary key, --댓글 일련번호 
+--num number not null references menu(num), --Foreign Key (게시물 번호)
+--name varchar2(50) not null, --유저 닉네임
+--content clob not null, --큰내용을 처리할 수 있게 clob을 써본다.
+--filename varchar2(200), -- 이미지 이름
+--filesize number default 0, --이미지 사이즈
+--reg_date date default sysdate --게시물 날짜 
+--);
+
 create table menu_comment (
 comment_num number not null primary key, --댓글 일련번호 
 num number not null references menu(num), --Foreign Key (게시물 번호)
@@ -233,4 +237,30 @@ ref number not null,		--댓글그룹
 re_step number not null,		--댓글의 순번 
 re_level number not null	--댓글단계
 );
+
+-- drop table menu_comment;
+commit;
+
+create table admin (
+userid varchar2(50) not null,
+passwd varchar2(50) not null,
+name varchar2(50) not null,
+email varchar2(100),
+join_date date default sysdate,
+primary key(userid)
+);
+
+insert into admin (userid, passwd, name ) values ('admin','1234','관리자');
+select * from admin;
+
+commit;
+
+select count(name),name
+from order_menu
+group by name;
+
+select name
+from order_menu
+where userid='kim1234';
+
 commit;

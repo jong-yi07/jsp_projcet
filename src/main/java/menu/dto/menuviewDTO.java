@@ -5,7 +5,7 @@ public class menuviewDTO {
 	private String name;
 	private String menu_detail;
 	private String classification;
-	private String count;
+	private int count;
 	private String vol;
 	private int caffeine;
 	private int fat;
@@ -13,11 +13,26 @@ public class menuviewDTO {
 	private int natrium;
 	private int protein;
 	private int sugar;
+	private String filename;
+	private int filesize; 
+	
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public int getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
+	}
 	public menuviewDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public menuviewDTO(int num, String name, String menu_detail, String classification, String count, String vol,
+	public menuviewDTO(int num, String name, String menu_detail, String classification, int count, String vol,
 			int caffeine, int fat, int kcal, int natrium, int protein, int sugar) {
 		super();
 		this.num = num;
@@ -63,10 +78,10 @@ public class menuviewDTO {
 	public void setClassification(String classification) {
 		this.classification = classification;
 	}
-	public String getCount() {
+	public int getCount() {
 		return count;
 	}
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
 	public String getVol() {

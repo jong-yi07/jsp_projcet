@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import menu.dto.menuOrderDTO;
+import menu.dto.menuviewDTO;
 import sqlmap.MybatisManager;
 
 public class adminDAO {
@@ -45,6 +46,20 @@ public class adminDAO {
 			if(session != null) session.close();
 		}
 		return list;
+	}
+
+	public void insert(menuviewDTO dto) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession(); 
+			session.insert("menu.menu_insert", dto);
+			session.commit(); //수동커밋
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}	
+		
 	}
 
 	
