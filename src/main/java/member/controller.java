@@ -120,7 +120,6 @@ public class controller extends HttpServlet {
 			String name=request.getParameter("name");
 			String tel=request.getParameter("tel");
 			String email=request.getParameter("email");
-			//String join_date=request.getParameter("join_date");
 			String birth_date=request.getParameter("birth_date");
 			
 			memberDTO dto=new memberDTO();

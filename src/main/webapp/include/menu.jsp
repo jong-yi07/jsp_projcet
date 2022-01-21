@@ -4,7 +4,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
 <nav class="nav1">
-  <a href="#" class="font1">로그인 | </a>
+<c:choose>
+<c:when test="${sessionScope.userid == null}">
+	<a href="../jsp/login.jsp" class="font1">로그인 | </a>
+</c:when>
+<c:otherwise>
+	${sessionScope.name}님이 로그인중입니다.
+	<a href="${path}/member_servlet/logout.do" class="font1">로그아웃 | </a>
+</c:otherwise>
+</c:choose>
+<c:choose>
+<c:when test="${sessionScope.admin_userid == null}">
+	<a href="../jsp/admin_login.jsp" class="font1">관리자 로그인 | </a>
+</c:when>
+<c:otherwise>
+	관리자 ${sessionScope.name}님이 로그인중입니다.
+	<a href="${path}/member_servlet/logout.do" class="font1">로그아웃 | </a>
+</c:otherwise>
+</c:choose>
   <a href="#" class="font1">매장찾기 | </a>
   <a href="#" class="font1"> 고객의 소리 </a>
   <a href="#" class="font1">이디야 공식몰 </a>
@@ -34,8 +51,8 @@
     </ul>
    <li><a href="#">메뉴</a>
     <ul class="submenu">
-     <li><a href="../jsp/order.jsp">메뉴</a></li>
-     <li><a href="#">공간2</a></li>
+     <li><a href="${path}/admin_servlet/chart.do">차트</a></li>
+     <li><a href="../jsp/chart.jsp">차트</a></li>
      <li><a href="#">공간3</a></li>
     </ul>
    <li><a href="#">내 정보</a>

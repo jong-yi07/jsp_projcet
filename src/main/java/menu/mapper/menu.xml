@@ -142,6 +142,11 @@ select *
 from order_menu
 where userid=#{userid}
 </select>
-</mapper>
 
+<select id="chart" resultType="menu.dto.menuOrderDTO">
+select name,count(name) purchases
+from order_menu
+group by name
+</select>
+</mapper>
 

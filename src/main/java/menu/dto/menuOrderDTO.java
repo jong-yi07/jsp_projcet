@@ -9,7 +9,13 @@ public class menuOrderDTO {
 	private String temp; //메뉴 온도 
 	private String cup; //컵
 	private String userid; //유저아이디 
-	public menuOrderDTO(int order_num, String name, String vol, int count, String temp, String cup, String userid) {
+	private int purchases; //구매횟수(계산용)
+	public menuOrderDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public menuOrderDTO(int order_num, String name, String vol, int count, String temp, String cup, String userid,
+			int purchases) {
 		super();
 		this.order_num = order_num;
 		this.name = name;
@@ -18,15 +24,12 @@ public class menuOrderDTO {
 		this.temp = temp;
 		this.cup = cup;
 		this.userid = userid;
-	}
-	public menuOrderDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.purchases = purchases;
 	}
 	@Override
 	public String toString() {
 		return "menuOrderDTO [order_num=" + order_num + ", name=" + name + ", vol=" + vol + ", count=" + count
-				+ ", temp=" + temp + ", cup=" + cup + ", userid=" + userid + "]";
+				+ ", temp=" + temp + ", cup=" + cup + ", userid=" + userid + ", purchases=" + purchases + "]";
 	}
 	public int getOrder_num() {
 		return order_num;
@@ -69,6 +72,12 @@ public class menuOrderDTO {
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	public int getPurchases() {
+		return purchases;
+	}
+	public void setPurchases(int purchases) {
+		this.purchases = purchases;
 	}
 	
 	

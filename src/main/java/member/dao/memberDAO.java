@@ -73,7 +73,6 @@ public class memberDAO {
 		Map<String,String>map = new HashMap<String,String>();
 		map.put("userid",userid);
 		map.put("passwd",passwd);
-		System.out.println(map);
 		
 		session=MybatisManager.getInstance().openSession(); 
 		String name=session.selectOne("member.login",map);
