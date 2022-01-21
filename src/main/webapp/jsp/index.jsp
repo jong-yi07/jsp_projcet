@@ -134,6 +134,23 @@ ul{
   background-color: #E27762;
 }
 
+@media ( max-width: 1024px ){
+	#div1{
+	height:2000px;
+	}
+	.menu1 img{
+	left:20%;
+	}
+	.menu2 img{
+	left:20%;
+	bottom: 700px;
+	}
+	.menu3 img{
+	left:20%;
+	bottom: 100px;
+	}
+}
+
 /* section2 */
 .div2{
   width:100%;
@@ -306,7 +323,7 @@ ul{
 		  <p class="text7">특별함을 경험할 수 있는 최상의 선택음료</p>
 	</section>
 	<section class="img">
-	 <img src="images/drink.jpg" style="width:400px">
+	 <img src="../images/drink.jpg" style="width:400px">
 	</section>
 	<div class="detail2"><a href="#" class="details2" title="시즌음료" >자세히보기</a></div>
 </div>
@@ -319,7 +336,7 @@ ul{
 	<p>2021.12.25</p>
  </div>
  <button type="button" id="close" onclick="this.parentElement.style.display='none'">
-  <img src="images/button.png" style="width:10px;"></button>
+  <img src="../images/button.png" style="width:10px;"></button>
 </div>
 
 <%@ include file="../include/footer.jsp" %>

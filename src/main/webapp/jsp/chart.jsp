@@ -44,13 +44,15 @@ function drawChart(){
 	
 }
 </script>
-
+<%@ include file="../include/menu.jsp" %>
 <!-- 구글차트 -->
 
 </head>
 <body>
+<section style="text-align: center;">
 <div id="chart_div" style="width: 600px; height: 440px;"></div>
 <button id="btn" type="button" onclick="drawChart()">refresh</button>
-
+</section>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

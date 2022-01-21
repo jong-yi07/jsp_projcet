@@ -49,12 +49,13 @@
      <li><a href="../jsp/order.jsp">메뉴</a></li>
      <li><a href="#">...</a></li>
     </ul>
-   <li><a href="#">메뉴</a>
+    <c:if test="${sessionScope.name!=null}">
+    <li><a href="#">관리자</a>
     <ul class="submenu">
-     <li><a href="${path}/admin_servlet/chart.do">차트</a></li>
      <li><a href="../jsp/chart.jsp">차트</a></li>
      <li><a href="#">공간3</a></li>
     </ul>
+    </c:if>
    <li><a href="#">내 정보</a>
     <ul class="submenu">
     <li><a href="../jsp/signup1.jsp">signup</a></li>
