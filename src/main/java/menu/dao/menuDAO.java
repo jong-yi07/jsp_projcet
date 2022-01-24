@@ -54,7 +54,6 @@ public class menuDAO {
 
 	//메뉴 상세페이지로 이동
 	public menuviewDTO view(String name) {
-		System.out.println("name:"+name);
 		menuviewDTO dto=null;
 		SqlSession session=null;
 		try {

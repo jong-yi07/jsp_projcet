@@ -13,21 +13,7 @@ public class menuviewDTO {
 	private int natrium;
 	private int protein;
 	private int sugar;
-	private String filename;
-	private int filesize; 
-	
-	public String getFilename() {
-		return filename;
-	}
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-	public int getFilesize() {
-		return filesize;
-	}
-	public void setFilesize(int filesize) {
-		this.filesize = filesize;
-	}
+
 	public menuviewDTO() {
 		super();
 		// TODO Auto-generated constructor stub

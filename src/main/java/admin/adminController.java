@@ -3,7 +3,6 @@ package admin;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import admin.dao.adminDAO;
 import common.Constants;
+import menu.dao.menuDAO;
 import menu.dto.menuOrderDTO;
 import menu.dto.menuviewDTO;
 
@@ -148,19 +148,55 @@ public class adminController extends HttpServlet {
 			dto.setProtein(protein);
 			dto.setSugar(sugar);
 			
-			//파일 첨부를 하지 않을 경우
-			if(filename == null || filename.trim().equals("")) {
-				filename="-";
-			}
-			
-			dto.setFilename(filename);
-			dto.setFilesize(filesize);
+//			//파일 첨부를 하지 않을 경우
+//			if(filename == null || filename.trim().equals("")) {
+//				filename="-";
+//			}
+//			
+//			dto.setFilename(filename);
+//			dto.setFilesize(filesize);
 			
 			dao.insert(dto);
-			String page="/jsp/list.jsp";
+			String page="/jsp/order.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}else if(uri.indexOf("edit.do")!=-1) { //수정/삭제 페이지로 이동
+			//게시물 번호
+			int num=Integer.parseInt(request.getParameter("num"));
+			String name=request.getParameter("name");
+			menuDAO dao2=new menuDAO();
+			
+			String page="";
+			page="/jsp/menu_edit.jsp";
+			request.setAttribute("dto", dao2.view(name));
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		}else if(uri.indexOf("menu_delete.do") != -1) {
+			MultipartRequest multi=new MultipartRequest(request, Constants.MENU_UPLOAD_PATH, Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
+			
+			String name=multi.getParameter("name");
+			int num=Integer.parseInt(multi.getParameter("num"));
+			//첨부파일 삭제
+			String filename=num+".jpg";
+			System.out.println("파일이름:"+filename);
+			
+			System.out.println("첨부파일 이름:"+filename);
+			if(filename != null && !filename.equals("-")) {//파일이 있으면
+				String path=Constants.MENU_UPLOAD_PATH+"/";
+				File f=new File(path+filename);
+				System.out.println("파일존재여부 :"+f.exists());
+				if(f.exists()) {//파일이 존재하면
+					f.delete();//파일 목록 삭제
+					System.out.println("삭제되었습니다.");
+				}
+			}
+			//레코드 삭제
+			dao.menu_delete(num,name);
+			
+			String page="/jsp/order.jsp";
+			response.sendRedirect(context+page);
 		}
+		
 	}
 
 

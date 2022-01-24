@@ -53,7 +53,7 @@
     <li><a href="#">관리자</a>
     <ul class="submenu">
      <li><a href="../jsp/chart.jsp">차트</a></li>
-     <li><a href="#">공간3</a></li>
+     <li><a href="../jsp/menu_insert.jsp">메뉴추가</a></li>
     </ul>
     </c:if>
    <li><a href="#">내 정보</a>

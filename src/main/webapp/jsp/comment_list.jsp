@@ -109,7 +109,6 @@ $(function(){
  </tr>
 </c:forEach>
 <!-- https://blog.naver.com/javaking75/220116830853 -->
-
 </table>
 </body>
 </html>

@@ -9,6 +9,9 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/menu.jsp" %> 
+
+<section style="text-align: center;">
 <h2>메뉴 등록</h2>
 <form name="form1" method="post" enctype="multipart/form-data"
 action="${path}/admin_servlet/menu_insert.do">
@@ -68,7 +71,9 @@ action="${path}/admin_servlet/menu_insert.do">
   </td>
  </tr>
 </table>
-
 </form>
+</section>
+
+<%@ include file="../include/footer.jsp" %> 
 </body>
 </html>

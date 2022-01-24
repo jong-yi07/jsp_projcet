@@ -17,6 +17,11 @@ function list(page){
 }
 </style>
 <script type="text/javascript">
+$(function(){
+	$("#update").click(function(){
+		location.href="menu_update.jsp";
+	});
+});
 </script>
 </head>
 <body>
@@ -60,7 +65,8 @@ function list(page){
   <td><a href="${path}/menu_servlet/view.do?name=${row.name}">${row.name}</a></td> <!-- 메뉴 상세페이지로 이동 -->
   <td>${row.menu_detail}</td>
   <td>${row.menucountdto.count}</td>
-  <td><button type="button">장바구니 버튼</button></td>
+  <td>
+  </td>
  </tr>
 </c:forEach>
 <tr align="center">

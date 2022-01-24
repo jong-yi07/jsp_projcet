@@ -150,9 +150,25 @@ group by name
 </select>
 
 <!--  메뉴저장 -->  
- <insert id="insert">
-  insert into menu_view(num,name,menu_detial,classification,count,vol,caffeine,fat,kcal,natrium,protein,sugar)
-values((select nvl(max(num)+1,1) from menu_view),'커피','커피','coffee',1000,'tall',0.0,0,0,0,0)
+ <insert id="menu_insert1">
+ insert into menu(num,name,menu_detail,classification) values((select nvl(max(num)+1,1) from menu),#{name},#{menu_detail},#{classification})
  </insert>
+  <insert id="menu_insert2">
+  insert into menu_count(name,vol,count) values(#{name},#{vol},#{count})
+ </insert>
+  <insert id="menu_insert3">
+  insert into menu_information(name,vol,kcal,natrium,fat,sugar,protein,Caffeine) values(#{name},#{vol},#{kcal},#{natrium},#{fat},#{sugar},#{protein},#{caffeine})
+ </insert>
+ 
+ <!-- 메뉴삭제 -->
+<delete id="menu_delete1">
+delete from menu_information where name=#{name}
+</delete>
+<delete id="menu_delete2">
+delete from menu_count where name=#{name}
+</delete>
+<delete id="menu_delete3">
+delete from menu where num=#{num}
+</delete>
 </mapper>
 

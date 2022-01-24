@@ -48,17 +48,38 @@ public class adminDAO {
 		return list;
 	}
 
+	//메뉴등록
 	public void insert(menuviewDTO dto) {
+		System.out.println(dto);
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession(); 
-			session.insert("menu.menu_insert", dto);
+			session.insert("menu.menu_insert1", dto);
+			session.insert("menu.menu_insert2", dto);
+			session.insert("menu.menu_insert3", dto);
 			session.commit(); //수동커밋
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(session != null) session.close();
 		}	
+		
+	}
+
+	//메뉴삭제
+	public void menu_delete(int num,String name) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.delete("menu.menu_delete1", name);
+			session.delete("menu.menu_delete2", name);
+			session.delete("menu.menu_delete3", num);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
 		
 	}
 

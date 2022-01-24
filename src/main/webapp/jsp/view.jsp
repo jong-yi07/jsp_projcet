@@ -38,6 +38,11 @@ $(function() {
 		
 	}); 
 	
+	$("#btnEdit").click(function(){ //수정/삭제
+		document.form2.action="${path}/admin_servlet/edit.do";
+		document.form2.submit();
+	});
+	
 });
 
 function count_change(){
@@ -127,6 +132,7 @@ select{
 <%@ include file="../include/menu.jsp" %>
 
 <section style="text-align: center;">
+<form name="form2" method="post">
 <table>
 <tr>
  <td rowspan="6"><img src="../img/${dto.num}.jpg" id="menu_img"></td>
@@ -157,7 +163,22 @@ select{
   <td>카페인</td>
   <td><input type="text" value="${dto.caffeine }"></td>
  </tr>
+ 
+ <!-- 수정삭제  -->
+ <tr>
+  <td colspan="2" align="center">
+   <!-- 수정,삭제를 위한 글번호 -->
+   <input type="hidden" name="num" value="${dto.num}">
+   <input type="hidden" name="name" value="${dto.name}">
+   <%-- <c:if test="${sessionScope.admin_userid != null}">
+   <input type="button" value="수정/삭제" id="btnEdit">
+	</c:if>  --%>
+	<input type="button" value="수정/삭제" id="btnEdit">
+  </td>
+ </tr>
 </table>
+</form>
+
 <select name="temp" id="temp">
  <option value="hot" selected="selected">hot</option>
  <option value="ice">ice</option>
@@ -207,6 +228,8 @@ select{
   </tr>
 </table>
 </form>
+
+
 <!-- 댓글 목록을 출력할 영역 -->
 <div id="commentList"></div>
 <input type="hidden" value="${dto.num}" onclick="comment_list.jsp" id="number"> <!-- 게시물번호를 comment_list.jsp에 전송 -->
