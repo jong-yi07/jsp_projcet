@@ -61,7 +61,7 @@ ul{
 }
 
 .menu1{
-  bottom: 5px; 
+  bottom: 180px; 
   right: 320px;
   width: 470px;
 }
@@ -75,7 +75,7 @@ ul{
 
 .menu3{
   width: 200px;
-  top: 300px;
+  top: 320px;
   right: 200px; 
 }
 
@@ -335,8 +335,8 @@ ul{
 	<p>카페 영업시간 조정안내</p>
 	<p>2021.12.25</p>
  </div>
- <button type="button" id="close" onclick="this.parentElement.style.display='none'">
-  <img src="../images/button.png" style="width:10px;"></button>
+ <button type="button" id="close" onclick="this.parentElement.style.display='none'" style="width:5x;">
+  <img src="../images/button.png" style="width:5px;"></button>
 </div>
 
 <%@ include file="../include/footer.jsp" %>
