@@ -170,10 +170,9 @@ select{
    <!-- 수정,삭제를 위한 글번호 -->
    <input type="hidden" name="num" value="${dto.num}">
    <input type="hidden" name="name" value="${dto.name}">
-   <%-- <c:if test="${sessionScope.admin_userid != null}">
+   <c:if test="${sessionScope.admin_userid != null}">
    <input type="button" value="수정/삭제" id="btnEdit">
-	</c:if>  --%>
-	<input type="button" value="수정/삭제" id="btnEdit">
+	</c:if> 
   </td>
  </tr>
 </table>

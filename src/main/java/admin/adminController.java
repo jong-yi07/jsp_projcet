@@ -50,7 +50,7 @@ public class adminController extends HttpServlet {
 			}else {// 로그인 성공
 				System.out.println("로그인 성공:"+name);
 				HttpSession session=request.getSession();
-				session.setAttribute("userid", userid);
+				session.setAttribute("admin_userid", userid);
 				session.setAttribute("name", name);
 				out.write(1+"");
 			}

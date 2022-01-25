@@ -135,7 +135,7 @@ ul{
 }
 
 @media ( max-width: 1024px ){
-	#div1{
+	.div1{
 	height:2000px;
 	}
 	.menu1 img{

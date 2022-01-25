@@ -31,14 +31,14 @@
   <a href="#" class="font1">유튜브</a>
   <input type="search" style="float: right; margin:10px; width:150px; height:20px;">
 </nav>
-<h2 class="title"><a href="index.jsp">script cafe</a></h2> 
+<h2 class="title"><a href="${path}/header_servlet/index.do">script cafe</a></h2> 
 
 <!-- 메뉴 -->
 <nav>
  <ul class="myMenu" id="nav" >
   <li><a href="#">메뉴</a>
    <ul class="submenu">
-    <li><a href="html/menu_detail.html">음료</a></li>
+    <li><a href="#">음료</a></li>
     <li><a href="#">푸드</a></li>
     <li><a href="#">상품</a></li>
     <li><a href="#">카드</a></li>
@@ -46,20 +46,20 @@
    </li>
    <li><a href="#">메뉴</a>
     <ul class="submenu">
-     <li><a href="../jsp/order.jsp">메뉴</a></li>
+     <li><a href="${path}/header_servlet/order.do">메뉴</a></li>
      <li><a href="#">...</a></li>
     </ul>
-    <c:if test="${sessionScope.name!=null}">
+    <c:if test="${sessionScope.admin_userid!=null}">
     <li><a href="#">관리자</a>
     <ul class="submenu">
-     <li><a href="../jsp/chart.jsp">차트</a></li>
-     <li><a href="../jsp/menu_insert.jsp">메뉴추가</a></li>
+     <li><a href="${path}/header_servlet/chart.do">차트</a></li>
+     <li><a href="${path}/header_servlet/menu_insert.do">메뉴추가</a></li>
     </ul>
     </c:if>
    <li><a href="#">내 정보</a>
     <ul class="submenu">
-    <li><a href="../jsp/signup1.jsp">signup</a></li>
-	<li><a href="../jsp/login.jsp">login</a></li>
+    <li><a href="${path}/header_servlet/signup.do">signup</a></li>
+	<li><a href="${path}/header_servlet/login.do">login</a></li>
 	<li><a href="${path}/member_servlet/logout.do">logout</a></li>
 	<li><a href="${path}/member_servlet/myinformation.do">my information</a></li>
 	<li><a href="${path}/menu_servlet/myorder.do">my order</a></li>
