@@ -181,7 +181,7 @@ public class adminController extends HttpServlet {
 			System.out.println("파일이름:"+filename);
 			
 			System.out.println("첨부파일 이름:"+filename);
-			if(filename != null && !filename.equals("-")) {//파일이 있으면
+			if(filename != null && !filename.equals("-")) {//파일이 있으면 파일삭제
 				String path=Constants.MENU_UPLOAD_PATH+"/";
 				File f=new File(path+filename);
 				System.out.println("파일존재여부 :"+f.exists());
@@ -195,6 +195,62 @@ public class adminController extends HttpServlet {
 			
 			String page="/jsp/order.jsp";
 			response.sendRedirect(context+page);
+		}else if(uri.indexOf("menu_update.do")!=-1) {
+			//파일업로드 처리
+			//디렉토리가 없으면 생성
+			File uploadDir = new File(Constants.MENU_UPLOAD_PATH);
+			if(!uploadDir.exists()) {//업로드디렉토리가 존재하지 않으면
+				uploadDir.mkdir();//디렉토리를 만듦
+			}
+			MultipartRequest multi=new MultipartRequest(request, Constants.MENU_UPLOAD_PATH, Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
+			
+			int num=Integer.parseInt(multi.getParameter("num"));
+			String name=multi.getParameter("name");
+			String menu_detail=multi.getParameter("menu_detail");
+			String classification=multi.getParameter("classification");
+			String vol=multi.getParameter("vol");
+			int count=Integer.parseInt(multi.getParameter("count"));
+			int kcal=Integer.parseInt(multi.getParameter("kcal"));
+			int natrium=Integer.parseInt(multi.getParameter("natrium"));
+			int fat=Integer.parseInt(multi.getParameter("fat"));
+			int sugar=Integer.parseInt(multi.getParameter("sugar"));
+			int protein=Integer.parseInt(multi.getParameter("protein"));
+			int caffeine=Integer.parseInt(multi.getParameter("caffeine"));
+			
+			//파일저장
+			String filename=" ";//공백 1개
+			int filesize=0;
+			try {
+				Enumeration files=multi.getFileNames();
+				while(files.hasMoreElements()) {
+					String file1=(String)files.nextElement();
+					filename=multi.getFilesystemName(file1);
+					File f1=multi.getFile(file1);
+					if(f1 != null) {
+						filesize=(int)f1.length();//파일 사이즈 저장
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			menuviewDTO dto=new menuviewDTO();
+			dto.setNum(num);
+			dto.setName(name);
+			dto.setMenu_detail(menu_detail);
+			dto.setClassification(classification);
+			dto.setKcal(kcal);
+			dto.setNatrium(natrium);
+			dto.setFat(fat);
+			dto.setSugar(sugar);
+			dto.setProtein(protein);
+			dto.setCaffeine(caffeine);
+			dto.setCount(count);
+			dto.setVol(vol);
+			dao.menu_update(dto);
+			String page="/jsp/order.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}
 		
 	}

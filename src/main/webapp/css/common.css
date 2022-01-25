@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-button{
+button, .btn{
 	background-color: #e7e7e7; 
 	color: black;
     border: none;
@@ -12,7 +12,7 @@ button{
     width: 250px;
 }
 
-button:hover {
+button:hover,  .btn:hover {
     background-color: #c0c0c0; /* Green */
     color: white;
 }

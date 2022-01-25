@@ -170,5 +170,22 @@ delete from menu_count where name=#{name}
 <delete id="menu_delete3">
 delete from menu where num=#{num}
 </delete>
+
+<!-- 메뉴수정 -->
+<update id="menu_update1">
+update menu 
+set menu_detail=#{menu_detail}, classification=#{classification}
+where num=#{num}
+</update>
+<update id="menu_update2">
+update menu_count 
+set vol=#{vol}, count=#{count}
+where name=#{name}
+</update>
+<update id="menu_update3">
+update menu_information 
+set vol=#{vol}, natrium=#{natrium},fat=#{fat}, protein=#{protein}, Caffeine=#{caffeine}
+where name=#{name}
+</update>
 </mapper>
 

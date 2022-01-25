@@ -83,6 +83,23 @@ public class adminDAO {
 		
 	}
 
+	public void menu_update(menuviewDTO dto) {
+		System.out.println("임시:"+dto);
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.update("menu.menu_update1", dto);
+			session.update("menu.menu_update2", dto);
+			session.update("menu.menu_update3", dto);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
+	}
+
 	
 
 	

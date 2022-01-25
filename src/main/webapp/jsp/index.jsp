@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
-<link rel="stylesheet" href="../css/basic.css" />
+<link rel="stylesheet" href="../css/common.css" />
 <style>
 .div1{
   width: 100%;
