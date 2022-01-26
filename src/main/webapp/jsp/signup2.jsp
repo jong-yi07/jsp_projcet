@@ -161,7 +161,7 @@ $(function(){
 		
 		var oldVal2;
 		
-		$("#userid").on("propertychange change keyup paste input", function() { //Input 값 변경 실시간 감지
+		$("#name").on("propertychange change keyup paste input", function() { //Input 값 변경 실시간 감지
 		    var currentVal = $(this).val();
 		    if(currentVal == oldVal2) {
 		        return;
@@ -173,9 +173,11 @@ $(function(){
 		
 		if(name_check==false)
 			alert("닉네임 중복확인해주세요");
-	
-		alert("가입되었습니다.");
-		insert(); //회원가입
+		
+		if(name_check==true && userid_check==true){
+			alert("가입되었습니다.");	
+			insert(); //회원가입
+		}
 	});
 });
 function insert(){
@@ -207,8 +209,11 @@ label{
 	width:30%;
 }
 #login_check,#name_check{
-	color:pink;
-}
+	/* color:pink; */
+	font-size: 8px;
+	width: 100px;
+	height: 50px;
+} 
 </style>
 </head>
 <body>
@@ -233,7 +238,7 @@ label{
 				</div>
 				<div class="form-group">
 					<button type="button"  id="name_check" style=”display:inline-block“>name check</button>
-					<label for="name" class="float-left" style="width:30%; display:inline-block;">UseName : </label> 
+					<label for="name" style="width:15%; display:inline-block;">UseName : </label> 
 					<input type="text" class="form-control float-right" id="name" placeholder="Enter Name" name="name" style="width:60%; display:inline-block;">
 					<br> <font id="checkname" size="2"></font>
 				</div>

@@ -47,7 +47,6 @@
    <li><a href="#">메뉴</a>
     <ul class="submenu">
      <li><a href="${path}/header_servlet/order.do">메뉴</a></li>
-     <li><a href="#">...</a></li>
     </ul>
     <c:if test="${sessionScope.admin_userid!=null}">
     <li><a href="#">관리자</a>

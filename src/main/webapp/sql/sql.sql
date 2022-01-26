@@ -1,25 +1,4 @@
-select count(*) from menu;
 
- select *
-  from (
-   select A.*, rownum as rn 
-   from (
-      select m.num, m.name,m.menu_detail, m.Classification,c.count
-        from menu m,menu_count c
-        where m.name = c.name and c.vol='tall'
-        order by num
-  ) A
-)
-where rn between 1 and 20;
-
-select m.num, m.name,m.menu_detail, m.Classification,c.count
-from menu m,menu_count c
-where m.name = c.name and c.vol='tall'
-order by num;
---
-drop table menu;
-drop table menu_information;
-drop table menu_count;
 
 -- 메뉴테이블
 create table menu( --메뉴테이블
@@ -28,9 +7,7 @@ name varchar2(100) UNIQUE,--메뉴이름
 menu_detail varchar2(4000), --메뉴설명
 Classification varchar2(50) --메뉴분류
 );
-select * from menu where Classification='bottle';
-delete from menu;
-select * from menu;
+
 insert into menu(num,name,menu_detail,Classification) values((select nvl(max(num)+1,1) from menu),'아메리카노','깔끔하고 상큼함이 특징인 커피','coffee');
 insert into menu(num,name,menu_detail,Classification) values((select nvl(max(num)+1,1) from menu),'카라멜 마키아또','향긋한 바닐라 시럽과 따뜻한 스팀 밀크 위에 풍성한 우유 거품을 얹고 점을 찍듯이 에스프레소를 부은 후 벌집 모양으로 카라멜 드리즐을 올린 달콤한 커피 음료','coffee');
 insert into menu(num,name,menu_detail,Classification) values((select nvl(max(num)+1,1) from menu),'카푸치노','풍부하고 진한 에스프레소에 따뜻한 우유와 벨벳 같은 우유 거품이 1:1 비율로 어우러져 마무리된 커피 음료','coffee');
@@ -76,11 +53,6 @@ insert into menu_information(name,vol,kcal,natrium,fat,sugar,protein,Caffeine) v
 commit; 
 
 select * from menu_information;
-
--- join문 
-select *
-from menu,menu_information
-where menu.name=menu_information.name;
 
 -- (메뉴크기에 따라 달라지는 )가격테이블 
 create table menu_count(
@@ -150,18 +122,8 @@ insert into menu_count(name,vol,count) values('시그니처 초콜릿','grande',
 insert into menu_count(name,vol,count) values('시그니처 초콜릿','venti',6300);
 
 commit; 
--- join문 
-select *
-from menu,menu_count
-where menu.name=menu_count.name;
 
-select * from menu;
-
---create view menu_view 
---as select *
---from menu m,menu_count c,menu_infromation i
---where m.name=c.name and m.name=i.name;
-
+-- 3개 테이블로 가상뷰 생성
 create view menu_view as
 select m.num as num ,m.name as name ,m.menu_detail as menu_detail ,m.classification as classification ,
     c.count as count ,c.vol as vol ,nvl(i.caffeine,0) as caffeine ,nvl(i.fat,0) as fat,nvl(i.kcal,0) as kcal,nvl(i.natrium,0) as natrium,nvl(i.protein,0) as protein,nvl(i.sugar,0) as sugar
@@ -169,20 +131,9 @@ from menu m left join menu_count c on m.name=c.name
 left join menu_information i on (m.name=i.name and c.vol=i.vol)
 order by m.num; 
 
-drop view menu_view;
-
 select * from menu_view;
 commit;
 
- select * from menu_view 
- where name='아메리카노' and vol='tall';
-
-commit;
-
-select * from member; 
-
- select passwd from member 
- where userid='kim12345' and email='1234@naver.com';
 -- 사용자 정보 테이블 
 create table member (
 userid varchar2(50) not null primary key, -- 유저아이디
@@ -197,6 +148,7 @@ birth_date date --생년월일
 -- insert into member(userid,passwd,name,tel,email) values('kim1234','qwqwQW12!@','홍길동','01000000000','1234@naver.com');
 select userid from member where userid='kim1234';
 commit;
+
 -- 사용자의 주문내역 테이블
 create table order_menu( --주문내역테이블
 order_num Number not null primary key, -- 주문순서 
@@ -208,22 +160,7 @@ cup varchar2(50), -- 개인컵/일회용,매장컵
 userid varchar2(50) references member(userid)-- 유저아이디 
 );
 
-select * from order_menu;
-
-drop table menu_comment;
-select * from menu_comment;
-
--- 메뉴리뷰 테이블
---create table menu_comment (
---comment_num number not null primary key, --댓글 일련번호 
---num number not null references menu(num), --Foreign Key (게시물 번호)
---name varchar2(50) not null, --유저 닉네임
---content clob not null, --큰내용을 처리할 수 있게 clob을 써본다.
---filename varchar2(200), -- 이미지 이름
---filesize number default 0, --이미지 사이즈
---reg_date date default sysdate --게시물 날짜 
---);
-
+-- 댓글 테이블
 create table menu_comment (
 comment_num number not null primary key, --댓글 일련번호 
 num number not null references menu(num), --Foreign Key (게시물 번호)
@@ -238,9 +175,7 @@ re_step number not null,		--댓글의 순번
 re_level number not null	--댓글단계
 );
 
--- drop table menu_comment;
-commit;
-
+-- 관리자 테이블
 create table admin (
 userid varchar2(50) not null,
 passwd varchar2(50) not null,
@@ -252,15 +187,5 @@ primary key(userid)
 
 insert into admin (userid, passwd, name ) values ('admin','1234','관리자');
 select * from admin;
-
-commit;
-
-select count(name),name
-from order_menu
-group by name;
-
-select name
-from order_menu
-where userid='kim1234';
 
 commit;

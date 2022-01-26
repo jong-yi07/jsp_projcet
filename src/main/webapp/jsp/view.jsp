@@ -136,7 +136,7 @@ select{
 <table>
 <tr>
  <td rowspan="6"><img src="../img/${dto.num}.jpg" id="menu_img"></td>
- <td colspan="4">${dto.name}</td>
+ <td colspan="4"><b>${dto.name}</b></td>
 </tr>
 <tr>
  <td colspan="4">${dto.menu_detail}</td>

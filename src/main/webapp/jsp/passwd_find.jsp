@@ -48,6 +48,7 @@ function passwd_find(){
 <%@ include file="../include/menu.jsp" %>
 
 <section style="text-align: center;">
+<h2>비밀번호 찾기</h2>
 <form class="form-inline">
 				<div class="form-group">
 					<label for="email" class="float-left" style="width:30%; display:inline-block;">Email : </label> 
@@ -58,7 +59,7 @@ function passwd_find(){
 					<input type="text" class="form-control float-right" id="userid" placeholder="Enter userid" name="userid" style="width:60%; display:inline-block;">
 				</div>
 				<br> <font id="result" size="4"></font>
-				<br> <button type="button" id="passwd_find">비밀번호 찾기</button>
+				<br> <button type="button" id="passwd_find">비밀번호 찾기</button> <br>
 				<br> <br><button type="button" id="login_btn">login</button>
 </form>
 </section>
