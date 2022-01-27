@@ -56,10 +56,18 @@ where userid=#{userid}
  delete from member
  where userid=#{userid}
  </delete>
+
+<!-- 내 메뉴 삭제 -->
+ <delete id="mymenu_delete">
+ delete from order_menu
+ where userid=#{userid}
+ </delete>
  
  <!-- 관리자 로그인 -->
   <select id="admin_login" resultType="String" parameterType="java.util.HashMap">
  select name from admin 
  where userid=#{userid} and passwd=#{passwd}
 </select>
+
+
 </mapper>

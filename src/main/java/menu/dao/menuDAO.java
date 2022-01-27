@@ -258,6 +258,40 @@ public class menuDAO {
 
 
 
+		public int re_step(int comment_num) {
+			int num=0;
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				num=session.selectOne("menu.re_step", comment_num); 							
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session != null) session.close();
+			}
+			
+			return num;
+		}
+
+
+
+		public int re_level(int comment_num) {
+			int num=0;
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				num=session.selectOne("menu.re_level", comment_num); 							
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session != null) session.close();
+			}
+			
+			return num;
+		}
+
+
+
 	
 
 

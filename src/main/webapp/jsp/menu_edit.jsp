@@ -26,6 +26,12 @@ $(function(){
 .btn{
 	width:250px;
 }
+
+
+img{
+	width: 400px;
+}
+
 </style>
 </head>
 <body>

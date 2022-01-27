@@ -167,6 +167,7 @@ public class menuController extends HttpServlet {
 			List<menucommentDTO> list=dao.commentList(num);
 			//request 영역에 저장
 			request.setAttribute("list", list);
+			System.out.println("댓글조회:"+list);
 			//출력페이지로 이동
 			String page="/jsp/comment_list.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
@@ -182,20 +183,34 @@ public class menuController extends HttpServlet {
 				int num=Integer.parseInt(request.getParameter("num")); //게시물 번호
 				String content=request.getParameter("content");
 				String name=request.getParameter("name");
-				int ref=dto.getRef();//답변그룹번호
-				int re_step=dto.getRe_step()+1;//출력순번
-				int re_level=dto.getRe_level()+1;//답변단계
+				int comment_num=Integer.parseInt(request.getParameter("comment_num")); //댓글번호
+				System.out.println("게시물 번호:"+comment_num);
 
 				dto.setNum(num);
 				dto.setContent(content);
 				dto.setName(name);
-				dto.setRef(ref);
+				dto.setRef(comment_num);
+		
+				//System.out.println(dto);
+			
+				
+				//댓글 그룹(ref)로 re_step, re_revle return하기
+				int re_step=dao.re_step(comment_num); 
+				int re_level=dao.re_level(comment_num);
+				System.out.println("re_step:"+re_step);
+				
+				//int ref=dto.getRef();//답변그룹번호
+				re_step=re_step+1;//출력순번
+				re_level=re_level+1;//답변단계
+				
 				dto.setRe_level(re_level);
 				dto.setRe_step(re_step);
-				System.out.println(dto);
+				
 				//답글순서 조정
-				dao.updatestep(ref,re_step);
-				System.out.println("답글그룹:"+ref);
+				//dao.updatestep(ref,re_step);
+				//dao.updatestep(comment_num,re_step);
+				//System.out.println("답글그룹:"+ref);
+				
 				//답글 쓰기
 				dao.reply(dto);
 				String page="/menu_servlet/list.do";

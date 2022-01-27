@@ -98,6 +98,7 @@ where name=#{name} and vol=#{vol}
  <select id="commentList" resultType="menu.dto.menucommentDTO">
   select * from menu_comment 
 	where num=#{num}
+	order by ref,re_step
  </select>
  
  <!-- 리뷰 삭제 -->
@@ -115,13 +116,10 @@ where name=#{name} and vol=#{vol}
  
   <!-- 답글 쓰기 -->
  <insert id="reply">
- insert into menu_comment 
-  (comment_num,num,name,ref
-  ,re_step,re_level,content)
+ insert into menu_comment (comment_num,num,name,ref,re_step,re_level,content)
  values
   ( (select nvl(max(comment_num)+1,1) from menu_comment),#{num}
-    ,#{name}, #{ref}, #{re_step}, #{re_level}
-    , #{content} )
+    ,#{name}, #{ref}, #{re_step}, #{re_level}, #{content} )
  </insert>
  
  <!-- (체크박스로 선택된 메뉴목록) -->
@@ -187,5 +185,18 @@ update menu_information
 set vol=#{vol}, natrium=#{natrium},fat=#{fat}, protein=#{protein}, Caffeine=#{caffeine}
 where name=#{name}
 </update>
+
+<!-- 답글쓰기 -->
+<select id="re_step" resultType="int">
+select re_step
+from menu_comment
+where comment_num=#{comment_num}
+</select>
+
+<select id="re_level" resultType="int">
+select re_level
+from menu_comment
+where comment_num=#{comment_num}
+</select>
 </mapper>
 

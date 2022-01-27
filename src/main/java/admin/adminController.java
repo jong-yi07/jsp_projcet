@@ -88,13 +88,10 @@ public class adminController extends HttpServlet {
 			}
 			data.put("rows", body);
 			//request.setAttribute("data", data);
-			//response.getWriter().print(data);
-
+			
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(data.toString());
 
-			
-			//System.out.println(data);
 					
 		}else if(uri.indexOf("menu_insert")!=-1) { //상품등록
 			//파일업로드 처리

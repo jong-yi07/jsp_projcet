@@ -130,19 +130,18 @@ public class controller extends HttpServlet {
 			dto.setTel(tel);
 			dto.setBirth_date(birth_date);
 			dao.update(dto);
-			response.sendRedirect(context+"/jsp/body.jsp");
+			response.sendRedirect(context+"/jsp/index.jsp");
 		}else if(uri.indexOf("delete.do")!=-1) { //회원정보 삭제
 			String userid=request.getParameter("userid");
-			dao.delete(userid);
+			dao.mymenu_delete(userid); //내 메뉴 삭제
+			dao.delete(userid); 
 			HttpSession session=request.getSession();
 			session.invalidate();
-			response.sendRedirect(context+"/jsp/body.jsp");
+			response.sendRedirect(context+"/jsp/index.jsp");
 		}else if(uri.indexOf("logout.do")!=-1) { //로그아웃
-			//1. 세션 변수에 저장된 값들을 제거하는 동작
 			HttpSession session=request.getSession();
-			session.invalidate();//세션 초기화
-			//2. 페이지를 이동
-			response.sendRedirect(request.getContextPath()+"/jsp/login.jsp?");
+			session.invalidate();
+			response.sendRedirect(request.getContextPath()+"/jsp/login.jsp");
 		}
 	}
 

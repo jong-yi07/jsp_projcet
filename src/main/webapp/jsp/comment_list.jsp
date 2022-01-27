@@ -40,7 +40,6 @@ $(function(){
 		+"&name="+"${sessionScope.name}"
 		+"&num="+$("#number").val();
 	
-		console.log("게시물 번호:"+$("#number").val());
 		console.log(param);
 		
 	 	 $.ajax({
@@ -80,6 +79,7 @@ $(function(){
    <c:forEach var="i" begin="1" end="${row.re_level}">
     &nbsp;&nbsp; ㄴ
    </c:forEach>
+   
    ${row.name}
    (<fmt:formatDate value="${row.reg_date}" 
    pattern="yyyy-MM-dd hh:mm:ss" />) <br>

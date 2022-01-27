@@ -152,11 +152,27 @@ public class memberDAO {
 		try {
 			session=MybatisManager.getInstance().openSession();
 			session.selectOne("member.delete",userid);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(session != null) session.close();
 		}
+	}
+
+	//장바구니 삭제
+	public void mymenu_delete(String userid) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.selectOne("member.mymenu_delete",userid);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+		
 	}
 
 
