@@ -38,14 +38,9 @@ public class menuController extends HttpServlet {
 		String contextPath=request.getContextPath();
 		menuDAO dao=new menuDAO();
 		if(uri.indexOf("list.do")!=-1) {
-			System.out.println("list조회중");
-			//페이지나누기를 위한 코드
-			//레코드 갯수 계산
+
 			int count=dao.count();
-			//System.out.println("count:"+count);
-			//페이지 나누기를 위한 처리
 			int curPage=1;
-			//숫자 처리는 null 포인트 익셉션이 잘 나기때문에 if문처리해줌
 			if(request.getParameter("curPage") != null) {
 				curPage=Integer.parseInt(request.getParameter("curPage"));
 			}
@@ -53,11 +48,8 @@ public class menuController extends HttpServlet {
 			int start=pager.getPageBegin();
 			int end=pager.getPageEnd();
 			
-			//System.out.println("list.do 호출");
 			List<menuDTO> list=dao.list(start,end);
-			//System.out.println(list);
 			request.setAttribute("list", list);
-			//페이지 네비게이션 출력을 위한 정보 전달
 			request.setAttribute("page", pager);
 			String page="/jsp/list.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
@@ -70,7 +62,7 @@ public class menuController extends HttpServlet {
 			String page="/jsp/view.jsp"; //상세화면
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
-		}else if(uri.indexOf("count_change")!=-1) { //상세페이지에서 영양정보와 가격정보 바꾸기 
+		}else if(uri.indexOf("count_change")!=-1) { //상세페이지에서 가격정보 바꾸기 
 			int num=Integer.parseInt(request.getParameter("num"));
 			String vol=request.getParameter("vol");
 			menuviewDTO dto=dao.count_change(num,vol);
@@ -79,7 +71,8 @@ public class menuController extends HttpServlet {
 			System.out.println("사이즈 변경:"+dto);
 			PrintWriter out=response.getWriter();
 			out.write(result+"");
-			//String page="/jsp/view.jsp"; //상세화면
+			
+			//String page="/jsp/view.jsp";
 			//RequestDispatcher rd=request.getRequestDispatcher(page);
 			//rd.forward(request, response);
 		}else if(uri.indexOf("search.do")!=-1) { //검색
@@ -107,7 +100,6 @@ public class menuController extends HttpServlet {
 			//가격정보 얻어오기 
 			int count=dao.pay(name,vol);
 			
-			//System.out.println(num+","+vol+","+temp+","+userid+","+name+","+count);
 			menuOrderDTO dto=new menuOrderDTO();
 			dto.setName(name);
 			dto.setCount(count);
@@ -153,11 +145,6 @@ public class menuController extends HttpServlet {
 			//
 			menucommentDTO dto=new menucommentDTO();
 			
-			/* 에러
-			 * int num=Integer.parseInt(request.getParameter("num")); String
-			 * name=request.getParameter("name"); String
-			 * content=request.getParameter("content");
-			 */
 			int num=Integer.parseInt(multi.getParameter("num"));
 			String name=multi.getParameter("name");
 			String content=multi.getParameter("content");
@@ -190,7 +177,7 @@ public class menuController extends HttpServlet {
 			dao.commentdelete(comment_num);
 			String page="/menu_servlet/list.do";
 			response.sendRedirect(contextPath+page);
-		}else if(uri.indexOf("comment_reply.do")!=-1) {
+		}else if(uri.indexOf("comment_reply.do")!=-1) { //답글쓰기
 				menucommentDTO dto=new menucommentDTO();
 				int num=Integer.parseInt(request.getParameter("num")); //게시물 번호
 				String content=request.getParameter("content");
@@ -208,6 +195,7 @@ public class menuController extends HttpServlet {
 				System.out.println(dto);
 				//답글순서 조정
 				dao.updatestep(ref,re_step);
+				System.out.println("답글그룹:"+ref);
 				//답글 쓰기
 				dao.reply(dto);
 				String page="/menu_servlet/list.do";

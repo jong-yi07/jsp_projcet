@@ -18,7 +18,7 @@
 	<a href="../jsp/admin_login.jsp" class="font1">관리자 로그인 | </a>
 </c:when>
 <c:otherwise>
-	관리자 ${sessionScope.name}님이 로그인중입니다.
+	${sessionScope.name}님이 로그인중입니다.
 	<a href="${path}/member_servlet/logout.do" class="font1">로그아웃 | </a>
 </c:otherwise>
 </c:choose>

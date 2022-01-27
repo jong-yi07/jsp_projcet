@@ -74,12 +74,7 @@ $(function(){
 <body>
 <table border="1" style="width: 100%">
 <c:forEach var="row" items="${list}">
- <tr>
-  <td colspan="3">
-	<c:if test="${row.filesize > 0}">
-    <img src="../upload/${row.filename}" style="width: 100px;">
-   </c:if>
- <tr>
+<tr>
   <td>
   <!-- 답글 들여쓰기 -->
    <c:forEach var="i" begin="1" end="${row.re_level}">
@@ -92,23 +87,26 @@ $(function(){
 	<img src="../img/star.PNG" style="width: 10px;">   
    </c:forEach>
    &nbsp; ${row.content}
+   <td colspan="3">
+	<c:if test="${row.filesize > 0}">
+    <img src="../upload/${row.filename}" style="width: 100px;">
+   </c:if>
+   </td>
   </td>
   <td>
  <c:set var="session_userid" value="${sessionScope.name}" />
  <c:set var="my_userid" value="${row.name}" />
  <c:if test="${session_userid == my_userid}">
-<%--  ${row.comment_num} --%>
- 	<button type="button" class="comment_delete" value="${row.comment_num}">덧글 삭제</button>
+ 	<button type="button" class="comment_delete" value="${row.comment_num}" style="width:150px;">덧글 삭제</button>
  </c:if>
   </td>
  </tr>
  <tr>
   <td><div class="add_input">답글쓰기</div></td>
   <td><div class="input_space"></div></td>
-  <td><button type="button" class="reply_insert" value="${row.comment_num}">답글</button></td>
+  <td><button type="button" class="reply_insert" value="${row.comment_num}" style="width:150px;">답글</button></td>
  </tr>
 </c:forEach>
-<!-- https://blog.naver.com/javaking75/220116830853 -->
 </table>
 </body>
 </html>

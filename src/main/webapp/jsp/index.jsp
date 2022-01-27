@@ -134,24 +134,7 @@ ul{
   background-color: #E27762;
 }
 
-/* @media ( max-width: 1024px ){
-	.div1{
-	height:2000px;
-	}
-	.menu1 img{
-	left:20%;
-	}
-	.menu2 img{
-	left:20%;
-	bottom: 700px;
-	}
-	.menu3 img{
-	left:20%;
-	bottom: 100px;
-	}
-	
-	
-} */
+
 /* section2 */
 .div2{
   width:100%;

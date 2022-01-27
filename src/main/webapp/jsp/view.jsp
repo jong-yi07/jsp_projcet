@@ -12,7 +12,7 @@
 $(function() {
 	comment_list();
 	
-	$("#vol").on("change", function(){ //? 값이 바뀌면 count값과 영양정보 값이 바뀜 
+	$("#vol").on("change", function(){
 		console.log($("#vol").val());
 		count_change();
 	});
@@ -56,10 +56,10 @@ function count_change(){
 		/* success:function(){
 			console.log("카페인:"+${dto.caffeine });
 			console.log("가격:"+${dto.count });
-		} */
+		}   */
 		success: function(result){
 			$("#result").html(result);
-		} 
+		}  
 	}); 
 }
 
@@ -83,38 +83,16 @@ function order_insert(){
 	}); 
 }
 
-/* function comment_add(){
-	var form=$('#form1')[0];
-	var formData=new FormData(form);
-	
-	var param="num=${dto.num}&name="+"${sessionScope.name }"
-	+"&content="+$("#content").val()
-	+"&file="+formData;;
-	
-	console.log(param);
-	
-	$.ajax({
-		type: "post",
-		url: "${path}/menu_servlet/comment_add.do",
-		data: param,
-		contentType:false,
-		processDate:false,
-		success: function(){
-			$("#content").val("");
-			comment_list();
-		}
-	});
-} */
-
 function comment_list(){
 	$.ajax({
 		type: "post",
 		url: "${path}/menu_servlet/commentList.do",
 		data: "num=${dto.num}",
-		success: function(result){//result변수는 responseText서버의 응답 텍스트
+		success: function(result){
 			$("#commentList").html(result);
 		}
 	});
+	
 }
 </script>
 <style type="text/css">
@@ -133,7 +111,7 @@ select{
 
 <section style="text-align: center;">
 <form name="form2" method="post">
-<table>
+<table style="width:100%;">
 <tr>
  <td rowspan="6"><img src="../img/${dto.num}.jpg" id="menu_img"></td>
  <td colspan="4"><b>${dto.name}</b></td>
@@ -161,7 +139,7 @@ select{
   <td>단백질(g)</td>
   <td>${dto.protein }</td>
   <td>카페인</td>
-  <td><input type="text" value="${dto.caffeine }"></td>
+  <td>${dto.caffeine }</td>
  </tr>
  
  <!-- 수정삭제  -->
@@ -193,8 +171,8 @@ select{
  <option value="disposable_cup">일회용컵</option>
 </select>  
 
-<h2><input type="text" value="${dto.count }"></h2>
-<font id="result" size="4"></font>
+<%-- <h2><input type="text" value="${dto.count }"></h2> --%>
+<br> <font id="result" size="4"></font> <br>
 <button type="button" id="orderbtn">장바구니 담기</button>
 </section>
 
@@ -216,7 +194,7 @@ select{
  </tr>
  <tr>
   <td><textarea rows="5" cols="80" placeholder="내용을 입력하세요" id="content" name="content"></textarea></td>
-  <td>점수: <input type="number" name="score" id="score" min="1" max="5"></td>
+  <td>점수: <input type="number" name="score" id="score" min="0" max="5" value="1"></td>
   <td> <input type="hidden" value="${sessionScope.name }" name="name" id="name"></td>
   <td> <input type="hidden" value="${dto.num}" name="num" id="num"></td>
  </tr>

@@ -31,6 +31,8 @@ function list(curPage){
 <body>
 <%@ include file="../include/menu.jsp" %>
 <!-- 메뉴 페이징처리 -->
+<section style="text-align: center;">
 <div id="result"></div>
+</section>
 </body>
 </html>

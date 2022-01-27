@@ -209,6 +209,7 @@ public class menuDAO {
 
 		//댓글쓰기 
 		public void reply(menucommentDTO dto) {
+			System.out.println("답글순서:"+dto.getRef());
 			SqlSession session=null;
 			try {
 				session=MybatisManager.getInstance().openSession();
