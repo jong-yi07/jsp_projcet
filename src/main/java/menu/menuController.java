@@ -184,17 +184,19 @@ public class menuController extends HttpServlet {
 				String content=request.getParameter("content");
 				String name=request.getParameter("name");
 				int comment_num=Integer.parseInt(request.getParameter("comment_num")); //댓글번호
-				System.out.println("게시물 번호:"+comment_num);
+				
+				int ref=dao.comment_ref(comment_num);
 
 				dto.setNum(num);
 				dto.setContent(content);
 				dto.setName(name);
-				dto.setRef(comment_num);
-		
+				//dto.setRef(comment_num);
+				dto.setRef(ref);
+				
 				//System.out.println(dto);
 			
 				
-				//댓글 그룹(ref)로 re_step, re_revle return하기
+				//답글순서 조정
 				int re_step=dao.re_step(comment_num); 
 				int re_level=dao.re_level(comment_num);
 				System.out.println("re_step:"+re_step);
@@ -216,18 +218,10 @@ public class menuController extends HttpServlet {
 				String page="/menu_servlet/list.do";
 				response.sendRedirect(contextPath+page);
 			}else if(uri.indexOf("checkbox.do")!=-1) {
-//				String coffee=request.getParameter("coffee");
-//				String blended=request.getParameter("blended");
-//				String tea=request.getParameter("tea");
-//				String Fizzio=request.getParameter("Fizzio");
-//				String Frappuccino=request.getParameter("Frappuccino");
-//				String drink=request.getParameter("drink");
-//				String etc=request.getParameter("etc");
 				String checklist[]=request.getParameterValues("check");
 				Check check=new Check();
 				check.setChecklist(checklist);
 				
-				//Check check=new Check(coffee,blended,tea,Fizzio,Frappuccino,drink,etc);
 				List<menuviewDTO> list=dao.list_checkbox(check);
 				request.setAttribute("list", list);
 				String page="/jsp/search.jsp";

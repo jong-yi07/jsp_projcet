@@ -198,5 +198,11 @@ select re_level
 from menu_comment
 where comment_num=#{comment_num}
 </select>
+
+<select id="comment_ref" resultType="int">
+select ref
+from menu_comment
+where comment_num=#{comment_num}
+</select>
 </mapper>
 

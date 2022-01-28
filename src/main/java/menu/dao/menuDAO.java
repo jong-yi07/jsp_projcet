@@ -292,6 +292,23 @@ public class menuDAO {
 
 
 
+		public int comment_ref(int comment_num) {
+			int num=0;
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				num=session.selectOne("menu.comment_ref", comment_num); 							
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session != null) session.close();
+			}
+			
+			return num;
+		}
+
+
+
 	
 
 

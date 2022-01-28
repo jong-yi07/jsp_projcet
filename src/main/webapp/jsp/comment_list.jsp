@@ -67,6 +67,9 @@ $(function(){
 			}
 		}); 
 	});
+	
+
+	
 });
 </script>
 </head>
@@ -98,6 +101,7 @@ $(function(){
  <c:set var="my_userid" value="${row.name}" />
  <c:if test="${session_userid == my_userid}">
  	<button type="button" class="comment_delete" value="${row.comment_num}" style="width:150px;">덧글 삭제</button>
+ 	<%-- <button type="button" class="comment_update" value="${row.comment_num}" style="width:150px;">덧글 수정</button> --%>
  </c:if>
   </td>
  </tr>
