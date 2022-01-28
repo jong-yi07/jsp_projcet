@@ -122,6 +122,13 @@ where name=#{name} and vol=#{vol}
     ,#{name}, #{ref}, #{re_step}, #{re_level}, #{content} )
  </insert>
  
+ <!-- 댓글수정 -->
+ <update id="commentupdate">
+ update menu_comment 
+set content=#{content}
+where comment_num=#{comment_num}
+ </update>
+ 
  <!-- (체크박스로 선택된 메뉴목록) -->
   <select id="list_checkbox" resultType="menu.dto.menuviewDTO" parameterType="menu.VO.Check"> 
   select num, name,menu_detail, classification,count

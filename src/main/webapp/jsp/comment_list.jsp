@@ -14,9 +14,11 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 var count=true;
+var update_count=true;
 
 $(function(){
 	$(".reply_insert").hide();
+	$(".comment_update2").hide();
 	
 	$(".add_input").click(function(){
 		
@@ -54,7 +56,7 @@ $(function(){
 	
 	
 	$(document).on("click",".comment_delete", function(){ //댓글삭제
-	//$("#comment_delete").click(function(){
+	//$(".comment_delete").click(function(){
 		var param="comment_num="+$(this).val();
 		
 		console.log(param);
@@ -68,7 +70,30 @@ $(function(){
 		}); 
 	});
 	
-
+	$(document).on("click",".comment_update", function(){ //댓글수정
+		var content=$(this).val();	
+		
+		if(update_count){
+			$(this).append( //update_space
+			'<input type="text" id="update_comment" value='+content+'>'
+			);
+			$(".comment_update2").show();
+			//$(".comment_update").hide();
+			update_count=false;
+		}
+	});
+	
+	$(document).on("click",".comment_update2", function(){ //댓글수정
+		var param="comment_num="+$(this).val()
+			+"&content="+$("#update_comment").val();
+		
+		 console.log(param);
+		 $.ajax({
+			type: "post",
+			url: "${path}/menu_servlet/comment_update.do",
+			data: param
+		}); 
+	});
 	
 });
 </script>
@@ -101,7 +126,9 @@ $(function(){
  <c:set var="my_userid" value="${row.name}" />
  <c:if test="${session_userid == my_userid}">
  	<button type="button" class="comment_delete" value="${row.comment_num}" style="width:150px;">덧글 삭제</button>
- 	<%-- <button type="button" class="comment_update" value="${row.comment_num}" style="width:150px;">덧글 수정</button> --%>
+ 	<button type="button" class="comment_update" value="${row.content}" style="width:150px;">덧글 수정</button> <!-- input타입 추가역할 -->
+ 	<span class="update_space"></span>
+ 	<button type="button" class="comment_update2" value="${row.comment_num}" style="width:150px;">덧글 수정(완료)</button> <!-- 수정역할 -->
  </c:if>
   </td>
  </tr>

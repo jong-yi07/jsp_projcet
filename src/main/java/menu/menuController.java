@@ -236,6 +236,16 @@ public class menuController extends HttpServlet {
 				String page="/jsp/myorder.jsp";
 				RequestDispatcher rd=request.getRequestDispatcher(page);
 				rd.forward(request, response);
+			}else if(uri.indexOf("comment_update.do")!=-1) {//댓글내용 수정
+				//HttpSession session = request.getSession();
+				//String userid=(String) session.getAttribute("userid");
+				int comment_num=Integer.parseInt(request.getParameter("comment_num"));
+				String content=request.getParameter("content");
+				
+				dao.commentupdate(comment_num,content);
+				
+				String page="/menu_servlet/list.do";
+				response.sendRedirect(contextPath+page);
 			}
 		
 	}

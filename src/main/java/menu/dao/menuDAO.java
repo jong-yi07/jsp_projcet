@@ -1,6 +1,5 @@
 package menu.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -209,7 +208,6 @@ public class menuDAO {
 
 		//댓글쓰기 
 		public void reply(menucommentDTO dto) {
-			System.out.println("답글순서:"+dto.getRef());
 			SqlSession session=null;
 			try {
 				session=MybatisManager.getInstance().openSession();
@@ -305,6 +303,27 @@ public class menuDAO {
 			}
 			
 			return num;
+		}
+
+
+
+		//댓글수정
+		public void commentupdate(int comment_num, String content) {
+			Map<String,Object> map=new HashMap<>();
+			map.put("comment_num", comment_num);
+			map.put("content", content);
+			
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				session.update("menu.commentupdate", map);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session!=null) session.close();
+			}
+			
 		}
 
 
