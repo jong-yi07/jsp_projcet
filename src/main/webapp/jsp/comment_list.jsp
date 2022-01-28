@@ -70,20 +70,30 @@ $(function(){
 		}); 
 	});
 	
-	$(document).on("click",".comment_update", function(){ //댓글수정
+ 	$(document).on("click",".comment_update", function(){ //댓글수정
 		var content=$(this).val();	
 		
 		if(update_count){
-			$(this).append( //update_space
-			'<input type="text" id="update_comment" value='+content+'>'
-			);
+			/* const box = document.getElementsByClassName("update_space");
+            const newP = document.createElement('p'); 
+            newP.innerHTML = '<input type="text" style="width:500px;" id="update_comment" value='+content+'>';
+            box.appendChild(newP); //추가 */
+            
+			//const element = document.getElementsByClassName("update_space");
+			//element.innerHTML += '<input type="text" style="width:500px;" id="update_comment" value='+content+'>';
+		
+			 $(this).append( //update_space
+			'<input type="text" style="width:500px;" id="update_comment" value='+content+'>'
+			);   
 			$(".comment_update2").show();
 			//$(".comment_update").hide();
 			update_count=false;
 		}
-	});
+	}); 
 	
-	$(document).on("click",".comment_update2", function(){ //댓글수정
+
+	
+	$(document).on("click",".comment_update2", function(){ //댓글수정2
 		var param="comment_num="+$(this).val()
 			+"&content="+$("#update_comment").val();
 		
@@ -127,8 +137,8 @@ $(function(){
  <c:if test="${session_userid == my_userid}">
  	<button type="button" class="comment_delete" value="${row.comment_num}" style="width:150px;">덧글 삭제</button>
  	<button type="button" class="comment_update" value="${row.content}" style="width:150px;">덧글 수정</button> <!-- input타입 추가역할 -->
- 	<span class="update_space"></span>
  	<button type="button" class="comment_update2" value="${row.comment_num}" style="width:150px;">덧글 수정(완료)</button> <!-- 수정역할 -->
+ 	 <span class="update_space"></span>
  </c:if>
   </td>
  </tr>
