@@ -141,6 +141,17 @@ where comment_num=#{comment_num}
         </if>
 </select>
 
+  <select id="list_checkbox2" resultType="menu.dto.menuviewDTO"> 
+  select num, name,menu_detail, classification,count
+   from menu_view
+        where vol='tall'
+        <if test="array!=null">
+         and Classification in <foreach item="value" index="index" collection="array" open="(" separator="," close=")" >
+         #{value}
+         </foreach>
+        </if>
+</select>
+
 <!-- 주문정보 -->
 <select id="myorder" resultType="menu.dto.menuOrderDTO">
 select * 

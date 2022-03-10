@@ -18,7 +18,6 @@ var update_count=true;
 
 $(function(){
 	$(".reply_insert").hide();
-	$(".comment_update2").hide();
 	
 	$(".add_input").click(function(){
 		
@@ -74,19 +73,9 @@ $(function(){
 		var content=$(this).val();	
 		
 		if(update_count){
-			/* const box = document.getElementsByClassName("update_space");
-            const newP = document.createElement('p'); 
-            newP.innerHTML = '<input type="text" style="width:500px;" id="update_comment" value='+content+'>';
-            box.appendChild(newP); //추가 */
-            
-			//const element = document.getElementsByClassName("update_space");
-			//element.innerHTML += '<input type="text" style="width:500px;" id="update_comment" value='+content+'>';
-		
-			 $(this).append( //update_space
-			'<input type="text" style="width:500px;" id="update_comment" value='+content+'>'
-			);   
-			$(".comment_update2").show();
-			//$(".comment_update").hide();
+			console.log(content);
+
+			$(".update_space").html('<input type="text" style="width:500px;" id="update_comment" value='+content+'>');
 			update_count=false;
 		}
 	}); 
@@ -124,13 +113,14 @@ $(function(){
    <c:forEach var="i" begin="1" end="${row.score}">
 	<img src="../img/star.PNG" style="width: 10px;">   
    </c:forEach>
-   &nbsp; ${row.content}
+   <br>
+   </td>
+   <td>${row.content}</td>
    <td colspan="3">
 	<c:if test="${row.filesize > 0}">
     <img src="../upload/${row.filename}" style="width: 100px;">
    </c:if>
    </td>
-  </td>
   <td>
  <c:set var="session_userid" value="${sessionScope.name}" />
  <c:set var="my_userid" value="${row.name}" />
@@ -138,7 +128,7 @@ $(function(){
  	<button type="button" class="comment_delete" value="${row.comment_num}" style="width:150px;">덧글 삭제</button>
  	<button type="button" class="comment_update" value="${row.content}" style="width:150px;">덧글 수정</button> <!-- input타입 추가역할 -->
  	<button type="button" class="comment_update2" value="${row.comment_num}" style="width:150px;">덧글 수정(완료)</button> <!-- 수정역할 -->
- 	 <span class="update_space"></span>
+ 	 <div class="update_space"></div>
  </c:if>
   </td>
  </tr>

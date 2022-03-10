@@ -328,6 +328,23 @@ public class menuDAO {
 
 
 
+		public List<menuviewDTO> list_checkbox(String[] value) {
+			List<menuviewDTO> list=null;
+			SqlSession session=null;
+			try {
+				session=MybatisManager.getInstance().openSession();
+				list=session.selectList("menu.list_checkbox2", value); 						
+				System.out.println("체크박스:"+list);		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(session != null) session.close();
+			}
+			return list;
+		}
+
+
+
 	
 
 

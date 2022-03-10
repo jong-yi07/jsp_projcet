@@ -217,12 +217,24 @@ public class menuController extends HttpServlet {
 				dao.reply(dto);
 				String page="/menu_servlet/list.do";
 				response.sendRedirect(contextPath+page);
-			}else if(uri.indexOf("checkbox.do")!=-1) {
+			}else if(uri.indexOf("checkbox.do")!=-1) { //체크박스
 				String checklist[]=request.getParameterValues("check");
+				System.out.println("체크박스 리스트:"+checklist);
+//				String value[]=request.getParameterValues("check");
+//				for(String val:value) {
+//					System.out.println("체크박스 배열:"+val);
+//				}
+//				
+//				for(int i=0;i<value.length;i++) {
+//					System.out.println(value[i]);
+//				}
+				
 				Check check=new Check();
 				check.setChecklist(checklist);
+				System.out.println("체크박스 vo:"+check);
 				
 				List<menuviewDTO> list=dao.list_checkbox(check);
+				//List<menuviewDTO> list=dao.list_checkbox(value);
 				request.setAttribute("list", list);
 				String page="/jsp/search.jsp";
 				RequestDispatcher rd=request.getRequestDispatcher(page);
